@@ -9,6 +9,7 @@ public class MyFirstProgram {
         testDistance(2, 1, 4, -1);      // some negative
         testDistance(2, 1, 2, -1);      // x the same, expect 2
         testDistance(2, 1, 4, 1);       // y the same, expect 2
+        testDistance(2.5, 1.5, 4.5, 1.5);  // let's try real numbers, expect 2
 
     }
 
