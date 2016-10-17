@@ -11,4 +11,12 @@ public class Point {
         this.x = x;
         this.y = y;
     }
+
+    /* Calculates distance relative to p2 */
+    public double distance(Point p2) {
+
+        double distance  = Math.sqrt((this.x - p2.x)*(this.x - p2.x) + (this.y - p2.y)*(this.y - p2.y));
+
+        return distance;
+    }
 }
