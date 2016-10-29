@@ -110,4 +110,20 @@ public class TestBase {
     protected void gotoAddNewPage() {
         wd.findElement(By.linkText("add new")).click();
     }
+
+    protected void deleteGroup() {
+        wd.findElement(By.name("delete")).click();
+    }
+
+    protected void selectGroup() {
+        wd.findElement(By.name("selected[]")).click();
+    }
+
+    protected void deleteContact() {
+        wd.findElement(By.xpath("//div[@id='content']/form[2]/div[2]/input")).click();
+    }
+
+    protected void selectContact() {
+        wd.findElement(By.id("4")).click();
+    }
 }

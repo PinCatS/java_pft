@@ -16,7 +16,6 @@ public class ContactAdditionTests extends TestBase {
         gotoAddNewPage();
         fillAddNewForm(new ContactData("Sergey", "Li", "pincats", "Principal Software Engineer", "DELL EMC", "+7 921 312 08 69", "pincats@gmail.com"));
         submitAddNewForm();
-        gotoHomePage();
     }
 
 }
