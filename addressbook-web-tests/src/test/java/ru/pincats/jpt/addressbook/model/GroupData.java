@@ -1,4 +1,4 @@
-package ru.pincats.jpt.addressbook;
+package ru.pincats.jpt.addressbook.model;
 
 public class GroupData {
     private final String name;

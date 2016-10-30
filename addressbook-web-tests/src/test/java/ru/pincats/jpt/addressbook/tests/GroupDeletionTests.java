@@ -1,4 +1,4 @@
-package ru.pincats.jpt.addressbook;
+package ru.pincats.jpt.addressbook.tests;
 
 import org.testng.annotations.Test;
 
@@ -7,17 +7,17 @@ public class GroupDeletionTests extends TestBase {
     @Test
     public void testGroupDeletion() {
         try{
-            gotoGroupPage();
-            selectGroup();
-            deleteGroup();
-            returnToGroupPage();
+            app.gotoGroupPage();
+            app.selectGroup();
+            app.deleteGroup();
+            app.returnToGroupPage();
         }
         catch(org.openqa.selenium.StaleElementReferenceException ex)
         {
             System.out.println("Stale reference detected. Try again");
-            selectGroup();
-            deleteGroup();
-            returnToGroupPage();
+            app.selectGroup();
+            app.deleteGroup();
+            app.returnToGroupPage();
         }
     }
 

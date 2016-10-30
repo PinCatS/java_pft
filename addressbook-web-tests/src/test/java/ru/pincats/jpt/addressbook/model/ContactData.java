@@ -1,4 +1,4 @@
-package ru.pincats.jpt.addressbook;
+package ru.pincats.jpt.addressbook.model;
 
 public class ContactData {
     private final String firstName;
