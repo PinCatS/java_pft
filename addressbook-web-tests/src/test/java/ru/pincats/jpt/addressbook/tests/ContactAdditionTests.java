@@ -7,9 +7,9 @@ public class ContactAdditionTests extends TestBase {
 
     @Test
     public void testContactAddition() {
-        app.gotoAddNewPage();
-        app.fillAddNewForm(new ContactData("Sergey", "Li", "pincats", "Principal Software Engineer", "DELL EMC", "+7 921 312 08 69", "pincats@gmail.com"));
-        app.submitAddNewForm();
+        app.getNavigationHelper().gotoAddNewPage();
+        app.getContactHelper().fillAddNewForm(new ContactData("Sergey", "Li", "pincats", "Principal Software Engineer", "DELL EMC", "+7 921 312 08 69", "pincats@gmail.com"));
+        app.getContactHelper().submitAddNewForm();
     }
 
 }
