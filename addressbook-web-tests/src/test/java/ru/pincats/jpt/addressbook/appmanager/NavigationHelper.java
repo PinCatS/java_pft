@@ -6,27 +6,26 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 /**
  * Created by PinCatS on 30.10.2016.
  */
-public class NavigationHelper {
-    private FirefoxDriver wd;
+public class NavigationHelper extends HelperBase {
 
     public NavigationHelper(FirefoxDriver wd) {
-        this.wd = wd;
+        super(wd);
     }
 
     public void returnToGroupPage() {
-        wd.findElement(By.linkText("group page")).click();
+        click(By.linkText("group page"));
     }
 
     public void gotoGroupPage() {
-        wd.findElement(By.id("content")).click();
-        wd.findElement(By.linkText("groups")).click();
+        click(By.id("content"));
+        click(By.linkText("groups"));
     }
 
     public void gotoHomePage() {
-        wd.findElement(By.linkText("home")).click();
+        click(By.linkText("home"));
     }
 
     public void gotoAddNewPage() {
-        wd.findElement(By.linkText("add new")).click();
+        click(By.linkText("add new"));
     }
 }
