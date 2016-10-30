@@ -6,10 +6,19 @@ public class GroupDeletionTests extends TestBase {
 
     @Test
     public void testGroupDeletion() {
-        gotoGroupPage();
-        selectGroup();
-        deleteGroup();
-        returnToGroupPage();
+        try{
+            gotoGroupPage();
+            selectGroup();
+            deleteGroup();
+            returnToGroupPage();
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            System.out.println("Stale reference detected. Try again");
+            selectGroup();
+            deleteGroup();
+            returnToGroupPage();
+        }
     }
 
 }

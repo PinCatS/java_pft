@@ -124,6 +124,6 @@ public class TestBase {
     }
 
     protected void selectContact() {
-        wd.findElement(By.id("4")).click();
+        wd.findElement(By.name("selected[]")).click();
     }
 }

@@ -6,9 +6,19 @@ public class ContactDeletionTests extends TestBase {
 
     @Test
     public void testContactDeletion() {
-        gotoHomePage();
-        selectContact();
-        deleteContact();
+        try{
+            gotoHomePage();
+            selectContact();
+            deleteContact();
+            gotoHomePage();
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            System.out.println("Stale reference detected. Try again");
+            selectContact();
+            deleteContact();
+            gotoHomePage();
+        }
     }
 
 }
