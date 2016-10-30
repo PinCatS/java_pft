@@ -17,16 +17,16 @@ public class HelperBase {
 
     protected void type(By locator, String text) {
         click(locator);
-        findElement(locator).clear();
-        findElement(locator).sendKeys(text);
+        enterText(locator, text);
     }
 
-    private WebElement findElement(By locator) {
-        return wd.findElement(locator);
+    private void enterText(By locator, String text) {
+        wd.findElement(locator).clear();
+        wd.findElement(locator).sendKeys(text);
     }
 
     protected void click(By locator) {
-        findElement(locator).click();
+        wd.findElement(locator).click();
     }
 
     public boolean isAlertPresent() {

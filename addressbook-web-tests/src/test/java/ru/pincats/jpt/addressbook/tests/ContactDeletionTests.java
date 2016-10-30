@@ -10,6 +10,7 @@ public class ContactDeletionTests extends TestBase {
             app.getNavigationHelper().gotoHomePage();
             app.getContactHelper().selectContact();
             app.getContactHelper().deleteContact();
+            app.getContactHelper().acceptContactDeletion();
             app.getNavigationHelper().gotoHomePage();
         }
         catch(org.openqa.selenium.StaleElementReferenceException ex)
@@ -17,7 +18,8 @@ public class ContactDeletionTests extends TestBase {
             System.out.println("Stale reference detected. Try again");
             app.getContactHelper().selectContact();
             app.getContactHelper().deleteContact();
-            app.getNavigationHelper().gotoHomePage();
+            app.getContactHelper().acceptContactDeletion();
+            app.getNavigationHelper().returnToHomePage();
         }
     }
 
