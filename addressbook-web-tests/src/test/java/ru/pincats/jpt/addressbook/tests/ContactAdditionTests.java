@@ -8,7 +8,7 @@ public class ContactAdditionTests extends TestBase {
     @Test
     public void testContactAddition() {
         app.getNavigationHelper().gotoAddNewPage();
-        app.getContactHelper().fillContactForm(new ContactData("Sergey", "Li", "pincats", "Principal Software Engineer", "DELL EMC", "+7 921 312 08 69", "pincats@gmail.com"));
+        app.getContactHelper().fillContactForm(new ContactData("Sergey", "Li", "pincats", "Principal Software Engineer", "DELL EMC", "+7 921 312 08 69", "pincats@gmail.com", "test1"), true);
         app.getContactHelper().submitAddNewForm();
         app.getNavigationHelper().returnToHomePage();
     }

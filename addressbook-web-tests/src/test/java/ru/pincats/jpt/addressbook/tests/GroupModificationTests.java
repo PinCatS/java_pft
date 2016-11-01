@@ -10,24 +10,12 @@ public class GroupModificationTests extends TestBase {
 
     @Test
     public void testGroupModification() {
-        try {
-            app.getNavigationHelper().gotoGroupPage();
-            app.getGroupHelper().selectGroup();
-            app.getGroupHelper().initGroupModification();
-            app.getGroupHelper().fillGroupForms(new GroupData("test1", "test2", "test3"));
-            app.getGroupHelper().submitGroupModification();
-            app.getNavigationHelper().returnToGroupPage();
-        }
-        catch(org.openqa.selenium.StaleElementReferenceException ex)
-        {
-            System.out.println("Stale reference detected. Try again");
-            app.getGroupHelper().selectGroup();
-            app.getGroupHelper().initGroupModification();
-            app.getGroupHelper().fillGroupForms(new GroupData("test1", "test2", "test3"));
-            app.getGroupHelper().submitGroupModification();
-            app.getNavigationHelper().returnToGroupPage();
-
-        }
+        app.getNavigationHelper().gotoGroupPage();
+        app.getGroupHelper().selectGroup();
+        app.getGroupHelper().initGroupModification();
+        app.getGroupHelper().fillGroupForms(new GroupData("test1", null, null));
+        app.getGroupHelper().submitGroupModification();
+        app.getNavigationHelper().returnToGroupPage();
     }
 
 }

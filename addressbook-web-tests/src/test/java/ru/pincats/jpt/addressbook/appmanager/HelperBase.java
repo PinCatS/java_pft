@@ -1,32 +1,66 @@
 package ru.pincats.jpt.addressbook.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.function.Function;
 
 /**
  * Created by PinCatS on 30.10.2016.
  */
 public class HelperBase {
     protected WebDriver wd;
+    //private static final int kWebDriverWait = 10;
 
     public HelperBase(WebDriver wd) {
         this.wd = wd;
     }
 
-    protected void type(By locator, String text) {
-        click(locator);
-        enterText(locator, text);
+    private static Function<WebDriver,WebElement> presenceOfElementLocated(final By locator) {
+        return new Function<WebDriver, WebElement>() {
+            @Override
+            public WebElement apply(WebDriver driver) {
+                return driver.findElement(locator);
+            }
+        };
     }
 
-    private void enterText(By locator, String text) {
-        wd.findElement(locator).clear();
-        wd.findElement(locator).sendKeys(text);
+    protected void type(By locator, String text) {
+        if (text != null) {
+            String existingText = wd.findElement(locator).getAttribute("value");
+            if (!existingText.equals(text)) {
+                WebElement we = wd.findElement(locator);
+                we.clear();
+                we.sendKeys(text);
+            }
+        }
     }
 
     protected void click(By locator) {
-        wd.findElement(locator).click();
+        try {
+            /*WebElement we = (new WebDriverWait(wd, kWebDriverWait))
+                    .until(new ExpectedCondition<WebElement>(){
+                        @Override
+                        public WebElement apply(WebDriver d) {
+                            return d.findElement(locator);
+                        }});
+            we.click();*/
+            wd.findElement(locator).click();
+        } catch (StaleElementReferenceException e) {
+            System.out.println("StaleElementReferenceException detected");
+            wd.findElement(locator).click(); // retry
+        }
+
+    }
+
+    protected boolean isElementPresent(By locator) {
+        try {
+            wd.findElement(locator);
+            return true;
+        } catch(NoSuchElementException e) {
+            return false;
+        }
     }
 
     public boolean isAlertPresent() {

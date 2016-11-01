@@ -2,7 +2,12 @@ package ru.pincats.jpt.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import ru.pincats.jpt.addressbook.model.ContactData;
 
 /**
@@ -15,10 +20,10 @@ public class ContactHelper extends HelperBase{
     }
 
     public void submitAddNewForm() {
-        click(By.xpath("//div[@id='content']/form/input[21]"));
+        click(By.xpath("//div[@id='content']//input[@value='Enter']"));
     }
 
-    public void fillContactForm(ContactData contactData) {
+    public void fillContactForm(ContactData contactData, boolean creation) {
         type(By.name("firstname"),contactData.getFirstName());
         type(By.name("lastname"),contactData.getLastName());
         type(By.name("nickname"),contactData.getNickname());
@@ -26,10 +31,16 @@ public class ContactHelper extends HelperBase{
         type(By.name("company"),contactData.getCompany());
         type(By.name("mobile"),contactData.getMobile());
         type(By.name("email"),contactData.getEmail());
+
+        if (creation) {
+            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+        } else {
+            Assert.assertEquals(isElementPresent(By.name("new_group")), false);
+        }
     }
 
     public void deleteContact() {
-        click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+        click(By.xpath("//div[@id='content']//input[@value='Delete']"));
     }
 
     public void selectContact() {
@@ -41,7 +52,7 @@ public class ContactHelper extends HelperBase{
     }
 
     public void submitContactModification() {
-        click(By.xpath("//div[@id='content']/form[1]/input[22]"));
+        click(By.xpath("//div[@id='content']//input[@value='Update']"));
     }
 
     public void acceptContactDeletion() {
