@@ -13,42 +13,52 @@ public class NavigationHelper extends HelperBase {
         super(wd);
     }
 
-    public void returnToGroupPage() {
+    private boolean isGroupPage() {
         if (isElementPresent(By.name("h1"))
                 && wd.findElement(By.tagName("h1")).getText().equals("Groups")
                 && isElementPresent(By.name("new"))) {
-            return;
+            return true;
         }
+        return false;
+    }
+
+    private boolean isHomePage() {
+        if (isElementPresent(By.id("maintable")))
+            return true;
+        return false;
+    }
+
+    private boolean isNewPage() {
+        if (isElementPresent(By.name("h1"))
+                && wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")
+                && isElementPresent(By.name("submit"))) {
+            return true;
+        }
+        return false;
+    }
+
+    public void returnToGroupPage() {
+        if (isGroupPage()) return;
         click(By.linkText("group page"));
     }
 
     public void gotoGroupPage() {
-        if (isElementPresent(By.name("h1"))
-                && wd.findElement(By.tagName("h1")).getText().equals("Groups")
-                && isElementPresent(By.name("new"))) {
-            return;
-        }
+        if (isGroupPage()) return;
         click(By.linkText("groups"));
     }
 
     public void gotoHomePage() {
-        if (isElementPresent(By.id("maintable")))
-            return;
+        if (isHomePage()) return;
         click(By.linkText("home"));
     }
 
     public void gotoAddNewPage() {
-        if (isElementPresent(By.name("h1"))
-                && wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")
-                && isElementPresent(By.name("submit"))) {
-            return;
-        }
+        if (isNewPage()) return;
         click(By.linkText("add new"));
     }
 
     public void returnToHomePage() {
-        if (isElementPresent(By.id("maintable")))
-            return;
+        if (isHomePage()) return;
         click(By.linkText("home page"));
     }
 }
