@@ -33,7 +33,12 @@ public class ContactHelper extends HelperBase{
         type(By.name("email"),contactData.getEmail());
 
         if (creation) {
-            select(By.name("new_group"), contactData.getGroup());
+            if (!isElementPresent(By.xpath("//select[@name='new_group']//option[text()='" + contactData.getGroup() + "']"))) {
+                select(By.name("new_group"), "[none]"); // at least should be [none] value
+            }
+            else {
+                select(By.name("new_group"), contactData.getGroup());
+            }
         } else {
             Assert.assertEquals(isElementPresent(By.name("new_group")), false);
         }
@@ -57,5 +62,14 @@ public class ContactHelper extends HelperBase{
 
     public void acceptContactDeletion() {
         wd.switchTo().alert().accept();
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.name("selected[]"));
+    }
+
+    public void createContact(ContactData contact) {
+        fillContactForm(contact, true);
+        submitAddNewForm();
     }
 }
