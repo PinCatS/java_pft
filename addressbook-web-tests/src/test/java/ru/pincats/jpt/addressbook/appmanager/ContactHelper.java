@@ -33,7 +33,7 @@ public class ContactHelper extends HelperBase{
         type(By.name("email"),contactData.getEmail());
 
         if (creation) {
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+            select(By.name("new_group"), contactData.getGroup());
         } else {
             Assert.assertEquals(isElementPresent(By.name("new_group")), false);
         }
