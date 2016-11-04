@@ -9,8 +9,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  */
 public class NavigationHelper extends HelperBase {
 
-    public NavigationHelper(WebDriver wd) {
+    ApplictionManager app;
+
+    public NavigationHelper(WebDriver wd, ApplictionManager app) {
         super(wd);
+        this.app = app;
     }
 
     private boolean isGroupPage() {

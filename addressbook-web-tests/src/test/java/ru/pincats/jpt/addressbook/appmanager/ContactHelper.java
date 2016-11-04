@@ -15,8 +15,11 @@ import ru.pincats.jpt.addressbook.model.ContactData;
  */
 public class ContactHelper extends HelperBase{
 
-    public ContactHelper(WebDriver wd) {
+    ApplictionManager app;
+
+    public ContactHelper(WebDriver wd, ApplictionManager app) {
         super(wd);
+        this.app = app;
     }
 
     public void submitAddNewForm() {
@@ -69,7 +72,9 @@ public class ContactHelper extends HelperBase{
     }
 
     public void createContact(ContactData contact) {
+        app.getNavigationHelper().gotoAddNewPage();
         fillContactForm(contact, true);
         submitAddNewForm();
+        app.getNavigationHelper().returnToHomePage();
     }
 }

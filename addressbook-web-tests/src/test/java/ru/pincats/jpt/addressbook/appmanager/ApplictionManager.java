@@ -35,10 +35,10 @@ public class ApplictionManager {
             wd = new InternetExplorerDriver();
         }
         wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        groupHelper = new GroupHelper(wd);
-        contactHelper = new ContactHelper(wd);
-        navigationHelper = new NavigationHelper(wd);
-        sessionHelper = new SessionHelper(wd);
+        groupHelper = new GroupHelper(wd, this);
+        contactHelper = new ContactHelper(wd, this);
+        navigationHelper = new NavigationHelper(wd, this);
+        sessionHelper = new SessionHelper(wd, this);
         wd.get("http://localhost/addressbook/");
         getSessionHelper().login("admin", "secret");
     }

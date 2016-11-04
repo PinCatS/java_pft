@@ -10,8 +10,11 @@ import ru.pincats.jpt.addressbook.model.GroupData;
  */
 public class GroupHelper extends HelperBase {
 
-    public GroupHelper(WebDriver wd) {
+    ApplictionManager app;
+
+    public GroupHelper(WebDriver wd, ApplictionManager app) {
         super(wd);
+        this.app = app;
     }
 
     public void submitGroupCreation() {
@@ -48,6 +51,7 @@ public class GroupHelper extends HelperBase {
         initGroupCreation();
         fillGroupForms(group);
         submitGroupCreation();
+        app.getNavigationHelper().returnToGroupPage();
     }
 
     public boolean isThereAGroup() {
