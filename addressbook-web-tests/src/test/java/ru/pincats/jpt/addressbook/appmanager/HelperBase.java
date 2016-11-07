@@ -12,7 +12,6 @@ import java.util.function.Function;
  */
 public class HelperBase {
     protected WebDriver wd;
-    //private static final int kWebDriverWait = 10;
 
     public HelperBase(WebDriver wd) {
         this.wd = wd;
@@ -31,13 +30,6 @@ public class HelperBase {
 
     protected void click(By locator) {
         try {
-            /*WebElement we = (new WebDriverWait(wd, kWebDriverWait))
-                    .until(new ExpectedCondition<WebElement>(){
-                        @Override
-                        public WebElement apply(WebDriver d) {
-                            return d.findElement(locator);
-                        }});
-            we.click();*/
             wd.findElement(locator).click();
         } catch (StaleElementReferenceException e) {
             System.out.println("StaleElementReferenceException detected");

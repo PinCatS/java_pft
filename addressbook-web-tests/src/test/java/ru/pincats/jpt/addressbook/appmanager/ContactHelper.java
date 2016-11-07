@@ -77,4 +77,8 @@ public class ContactHelper extends HelperBase{
         submitAddNewForm();
         app.getNavigationHelper().returnToHomePage();
     }
+
+    public int getContactsNumber() {
+        return wd.findElements(By.name("selected[]")).size();
+    }
 }
