@@ -64,7 +64,7 @@ public class ContactHelper extends HelperBase{
     }
 
     public void acceptContactDeletion() {
-        wd.switchTo().alert().accept();
+        getWd().switchTo().alert().accept();
     }
 
     public boolean isThereAContact() {
@@ -79,6 +79,6 @@ public class ContactHelper extends HelperBase{
     }
 
     public int getContactsNumber() {
-        return wd.findElements(By.name("selected[]")).size();
+        return getWd().findElements(By.name("selected[]")).size();
     }
 }

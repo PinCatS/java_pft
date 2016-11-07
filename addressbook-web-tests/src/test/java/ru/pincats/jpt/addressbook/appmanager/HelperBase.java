@@ -11,11 +11,14 @@ import java.util.function.Function;
  * Created by PinCatS on 30.10.2016.
  */
 public class HelperBase {
-    protected WebDriver wd;
+
+    private WebDriver wd;
 
     public HelperBase(WebDriver wd) {
         this.wd = wd;
     }
+
+
 
     protected void type(By locator, String text) {
         if (text != null) {
@@ -61,5 +64,9 @@ public class HelperBase {
         } catch (NoAlertPresentException e) {
             return false;
         }
+    }
+
+    protected WebDriver getWd() {
+        return wd;
     }
 }

@@ -18,7 +18,7 @@ public class NavigationHelper extends HelperBase {
 
     private boolean isGroupPage() {
         if (isElementPresent(By.name("h1"))
-                && wd.findElement(By.tagName("h1")).getText().equals("Groups")
+                && getWd().findElement(By.tagName("h1")).getText().equals("Groups")
                 && isElementPresent(By.name("new"))) {
             return true;
         }
@@ -33,7 +33,7 @@ public class NavigationHelper extends HelperBase {
 
     private boolean isNewPage() {
         if (isElementPresent(By.name("h1"))
-                && wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")
+                && getWd().findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")
                 && isElementPresent(By.name("submit"))) {
             return true;
         }

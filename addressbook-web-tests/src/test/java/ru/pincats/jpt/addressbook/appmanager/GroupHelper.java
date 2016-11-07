@@ -59,6 +59,6 @@ public class GroupHelper extends HelperBase {
     }
 
     public int getGroupNumber() {
-        return wd.findElements(By.name("selected[]")).size();
+        return getWd().findElements(By.name("selected[]")).size();
     }
 }
