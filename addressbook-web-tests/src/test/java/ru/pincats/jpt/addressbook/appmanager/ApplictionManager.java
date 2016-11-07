@@ -7,6 +7,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 
 import java.util.Objects;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -15,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 public class ApplictionManager {
 
     WebDriver wd;
+    private final Random random = new Random(); // no need in seed because by default it initialize using time
 
     private GroupHelper groupHelper;
     private ContactHelper contactHelper;
@@ -61,5 +63,9 @@ public class ApplictionManager {
 
     public SessionHelper getSessionHelper() {
         return sessionHelper;
+    }
+
+    public Random getRandom() {
+        return random;
     }
 }
