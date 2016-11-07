@@ -4,6 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.pincats.jpt.addressbook.model.GroupData;
 
+import java.util.List;
+
 public class GroupDeletionTests extends TestBase {
 
     @Test
@@ -12,12 +14,12 @@ public class GroupDeletionTests extends TestBase {
         if (!app.getGroupHelper().isThereAGroup()) {
             app.getGroupHelper().createGroup(new GroupData("Test1", null, null));
         }
-        int before = app.getGroupHelper().getGroupNumber();
-        app.getGroupHelper().selectGroup(app.getRandom().nextInt(before -1));
+        List<GroupData> before = app.getGroupHelper().getGroupList();
+        app.getGroupHelper().selectGroup(app.getRandom().nextInt(before.size() - 1));
         app.getGroupHelper().deleteGroup();
         app.getNavigationHelper().returnToGroupPage();
-        int after = app.getGroupHelper().getGroupNumber();
-        Assert.assertEquals(after, before - 1);
+        List<GroupData> after = app.getGroupHelper().getGroupList();
+        Assert.assertEquals(after.size(), before.size() - 1);
     }
 
 }

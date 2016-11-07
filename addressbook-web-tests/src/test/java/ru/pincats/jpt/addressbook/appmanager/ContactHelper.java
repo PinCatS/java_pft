@@ -10,6 +10,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import ru.pincats.jpt.addressbook.model.ContactData;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by PinCatS on 30.10.2016.
  */
@@ -80,5 +83,20 @@ public class ContactHelper extends HelperBase{
 
     public int getContactsNumber() {
         return getWd().findElements(By.name("selected[]")).size();
+    }
+
+    public List<ContactData> getContactsList() {
+        List<ContactData> contacts = new ArrayList<ContactData>();
+        List<WebElement> elements = getWd().findElements(By.xpath("//table[@id='maintable']/tbody/tr[@name='entry']"));
+        for (WebElement e : elements) {
+            List<WebElement> fields = e.findElements(By.cssSelector("td"));
+            String last_name = fields.get(1).getText();
+            String first_name = fields.get(2).getText();
+            String address = fields.get(3).getText();
+            String email = fields.get(4).getText();
+            String mobile = fields.get(5).getText();
+            contacts.add(new ContactData(first_name, last_name, null, null, null, mobile, email, null));
+        }
+        return contacts;
     }
 }

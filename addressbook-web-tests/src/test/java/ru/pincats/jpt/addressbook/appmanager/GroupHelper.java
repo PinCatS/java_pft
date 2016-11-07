@@ -2,8 +2,12 @@ package ru.pincats.jpt.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.pincats.jpt.addressbook.model.GroupData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by PinCatS on 30.10.2016.
@@ -60,5 +64,15 @@ public class GroupHelper extends HelperBase {
 
     public int getGroupNumber() {
         return getWd().findElements(By.name("selected[]")).size();
+    }
+
+    public List<GroupData> getGroupList() {
+        List<GroupData> groups = new ArrayList<GroupData>();
+        List<WebElement> elements = getWd().findElements(By.cssSelector("span.group"));
+        for (WebElement e : elements) {
+            String name = e.getText();
+            groups.add(new GroupData(name, null, null));
+        }
+        return groups;
     }
 }
