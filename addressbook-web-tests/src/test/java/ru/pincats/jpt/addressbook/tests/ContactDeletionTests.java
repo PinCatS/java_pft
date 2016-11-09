@@ -15,12 +15,16 @@ public class ContactDeletionTests extends TestBase {
             app.getContactHelper().createContact(new ContactData("Sergey", "Li", "pincats", "Principal Software Engineer", "DELL EMC", "+7 921 312 08 69", "pincats@gmail.com", "test1"));
         }
         List<ContactData> before = app.getContactHelper().getContactsList();
-        app.getContactHelper().selectContact(app.getRandom().nextInt(before.size() - 1));
+        int random_index = app.getRandom().nextInt(before.size() - 1);
+        app.getContactHelper().selectContact(random_index);
         app.getContactHelper().deleteContact();
         app.getContactHelper().acceptContactDeletion();
         app.getNavigationHelper().gotoHomePage();
         List<ContactData> after = app.getContactHelper().getContactsList();
         Assert.assertEquals(after.size(), before.size() - 1);
+
+        before.remove(random_index);
+        Assert.assertEquals(after, before);
     }
 
 }
