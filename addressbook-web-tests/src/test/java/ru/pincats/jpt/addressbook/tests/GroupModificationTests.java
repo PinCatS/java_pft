@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.pincats.jpt.addressbook.model.GroupData;
 
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -18,13 +19,19 @@ public class GroupModificationTests extends TestBase {
             app.getGroupHelper().createGroup(new GroupData("test1", "test2", "test3"));
         }
         List<GroupData> before = app.getGroupHelper().getGroupList();
-        app.getGroupHelper().selectGroup(app.getRandom().nextInt(before.size() -1));
+        int random_index = app.getRandom().nextInt(before.size() -1);
+        app.getGroupHelper().selectGroup(random_index);
         app.getGroupHelper().initGroupModification();
-        app.getGroupHelper().fillGroupForms(new GroupData("test1", null, null));
+        GroupData new_group = new GroupData(before.get(random_index).getId(), "test9", null, null);
+        app.getGroupHelper().fillGroupForms(new_group);
         app.getGroupHelper().submitGroupModification();
         app.getNavigationHelper().returnToGroupPage();
         List<GroupData> after = app.getGroupHelper().getGroupList();
         Assert.assertEquals(after.size(), before.size());
+
+        before.remove(random_index);
+        before.add(new_group); // note: we obtain only name elem of group data, that is why I can use here new_group
+        Assert.assertEquals(new HashSet<Object>(after), new HashSet<Object>(before));
     }
 
 }

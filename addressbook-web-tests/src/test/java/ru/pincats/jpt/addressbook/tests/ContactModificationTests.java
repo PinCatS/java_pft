@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.pincats.jpt.addressbook.model.ContactData;
 
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -15,16 +16,23 @@ public class ContactModificationTests extends TestBase {
     public void testContactModification() {
         app.getNavigationHelper().gotoHomePage();
         if (!app.getContactHelper().isThereAContact()) {
-            app.getContactHelper().createContact(new ContactData("Sergey", "Li", "pincats", "Principal Software Engineer", "DELL EMC", "+7 921 312 08 69", "pincats@gmail.com", "test1"));
+            app.getContactHelper().createContact(new ContactData("Sergey", "Li", "pincats", "Principal Software Engineer", "DELL EMC", "+79213120869", "pincats@gmail.com", "test1"));
         }
         List<ContactData> before = app.getContactHelper().getContactsList();
-        app.getContactHelper().selectContact(app.getRandom().nextInt(before.size() - 1));
-        app.getContactHelper().initContactModification();
-        app.getContactHelper().fillContactForm(new ContactData("Sergey2", null, null, null, null, null, null, null), false);
+        int random_index = app.getRandom().nextInt(before.size() - 1);
+        app.getContactHelper().selectContact(random_index);
+        app.getContactHelper().initContactModification(random_index);
+        ContactData new_contact = new ContactData(before.get(random_index).getId(),"Sergey2", null, null, null, null, null, null, null);
+        app.getContactHelper().fillContactForm(new_contact, false);
         app.getContactHelper().submitContactModification();
         app.getNavigationHelper().returnToHomePage();
         List<ContactData> after = app.getContactHelper().getContactsList();
         Assert.assertEquals(after.size(), before.size());
+
+        ContactData modified_contact = new ContactData(before.get(random_index).getId(), "Sergey2", "Li", "pincats", "Principal Software Engineer", "DELL EMC", "+79213120869", "pincats@gmail.com", "test1");
+        before.remove(random_index);
+        before.add(modified_contact);
+        Assert.assertEquals(new HashSet<Object>(after), new HashSet<Object>(before));
     }
 
 }
