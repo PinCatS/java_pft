@@ -1,7 +1,7 @@
 package ru.pincats.jpt.addressbook.model;
 
 public class GroupData {
-    private final int id;
+    private int id;
     private final String name;
     private final String header;
     private final String footer;
@@ -18,6 +18,10 @@ public class GroupData {
         this.name = name;
         this.header = header;
         this.footer = footer;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId() {

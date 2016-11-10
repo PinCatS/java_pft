@@ -1,7 +1,7 @@
 package ru.pincats.jpt.addressbook.model;
 
 public class ContactData {
-    private final int id;
+    private int id;
     private final String firstName;
     private final String lastName;
     private final String nickname;
@@ -33,6 +33,15 @@ public class ContactData {
         this.mobile = mobile;
         this.email = email;
         this.group = group;
+    }
+
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getFirstName() {
@@ -91,10 +100,6 @@ public class ContactData {
         result = 31 * result + (mobile != null ? mobile.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         return result;
-    }
-
-    public int getId() {
-        return id;
     }
 
     @Override
