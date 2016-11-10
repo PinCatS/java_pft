@@ -3,10 +3,6 @@ package ru.pincats.jpt.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import ru.pincats.jpt.addressbook.model.ContactData;
 
@@ -21,7 +17,7 @@ public class ContactHelper extends HelperBase{
 
     private ApplictionManager app;
 
-    Comparator<? super ContactData> comparatorById;
+    private Comparator<? super ContactData> comparatorById;
 
     public ContactHelper(WebDriver wd, ApplictionManager app) {
         super(wd);

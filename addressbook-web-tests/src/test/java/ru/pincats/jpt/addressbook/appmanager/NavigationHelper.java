@@ -2,7 +2,6 @@ package ru.pincats.jpt.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
  * Created by PinCatS on 30.10.2016.

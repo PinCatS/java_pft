@@ -4,8 +4,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.pincats.jpt.addressbook.model.GroupData;
 
-import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 /**
