@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.pincats.jpt.addressbook.model.GroupData;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -31,7 +32,10 @@ public class GroupModificationTests extends TestBase {
 
         before.remove(random_index);
         before.add(new_group); // note: we obtain only name elem of group data, that is why I can use here new_group
-        Assert.assertEquals(new HashSet<Object>(after), new HashSet<Object>(before));
+
+        before.sort(app.getGroupHelper().getComparatorById());
+        after.sort(app.getGroupHelper().getComparatorById());
+        Assert.assertEquals(after, before);
     }
 
 }

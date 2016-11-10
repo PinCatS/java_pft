@@ -11,6 +11,7 @@ import org.testng.Assert;
 import ru.pincats.jpt.addressbook.model.ContactData;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -18,11 +19,14 @@ import java.util.List;
  */
 public class ContactHelper extends HelperBase{
 
-    ApplictionManager app;
+    private ApplictionManager app;
+
+    Comparator<? super ContactData> comparatorById;
 
     public ContactHelper(WebDriver wd, ApplictionManager app) {
         super(wd);
         this.app = app;
+        comparatorById = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
     }
 
     public void submitAddNewForm() {
@@ -80,6 +84,10 @@ public class ContactHelper extends HelperBase{
         fillContactForm(contact, true);
         submitAddNewForm();
         app.getNavigationHelper().returnToHomePage();
+    }
+
+    public Comparator<? super ContactData> getComparatorById() {
+        return comparatorById;
     }
 
     public int getContactsNumber() {

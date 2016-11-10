@@ -9,7 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  */
 public class NavigationHelper extends HelperBase {
 
-    ApplictionManager app;
+    private ApplictionManager app;
 
     public NavigationHelper(WebDriver wd, ApplictionManager app) {
         super(wd);

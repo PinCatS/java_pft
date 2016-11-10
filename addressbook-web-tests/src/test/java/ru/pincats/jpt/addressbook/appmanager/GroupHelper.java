@@ -7,6 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.pincats.jpt.addressbook.model.GroupData;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -14,11 +15,14 @@ import java.util.List;
  */
 public class GroupHelper extends HelperBase {
 
-    ApplictionManager app;
+    private ApplictionManager app;
+
+    private Comparator<? super GroupData> comparatorById;
 
     public GroupHelper(WebDriver wd, ApplictionManager app) {
         super(wd);
         this.app = app;
+        comparatorById = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
     }
 
     public void submitGroupCreation() {
@@ -60,6 +64,10 @@ public class GroupHelper extends HelperBase {
 
     public boolean isThereAGroup() {
         return isElementPresent(By.name("selected[]"));
+    }
+
+    public Comparator<? super GroupData> getComparatorById() {
+        return comparatorById;
     }
 
     public int getGroupNumber() {

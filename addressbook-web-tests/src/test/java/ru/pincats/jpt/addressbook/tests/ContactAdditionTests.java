@@ -19,8 +19,9 @@ public class ContactAdditionTests extends TestBase {
         List<ContactData> after = app.getContactHelper().getContactsList();
         Assert.assertEquals(after.size(), before.size() + 1);
 
-        contact.setId(after.stream().max((Comparator<ContactData>) (o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
         before.add(contact);
+        before.sort(app.getContactHelper().getComparatorById());
+        after.sort(app.getContactHelper().getComparatorById());
         Assert.assertEquals(new HashSet<Object>(after), new HashSet<Object>(before));
     }
 

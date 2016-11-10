@@ -9,7 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  */
 public class SessionHelper extends HelperBase {
 
-    ApplictionManager app;
+    private ApplictionManager app;
 
     public SessionHelper(WebDriver wd, ApplictionManager app) {
         super(wd);
