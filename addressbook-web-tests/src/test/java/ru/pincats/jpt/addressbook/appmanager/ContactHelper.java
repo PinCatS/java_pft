@@ -86,17 +86,22 @@ public class ContactHelper extends HelperBase{
         return getWd().findElements(By.name("selected[]")).size();
     }
 
+    private ContactData extarctContactFromRow(List<WebElement> fields) {
+        String last_name = fields.get(1).getText();
+        String first_name = fields.get(2).getText();
+        String email = fields.get(4).getText();
+        String mobile = fields.get(5).getText();
+        String href_with_id = fields.get(6).findElement(By.cssSelector("a")).getAttribute("href");
+        int id = Integer.parseInt(href_with_id.substring(href_with_id.indexOf("id=")+3));
+        return new ContactData(id, first_name, last_name, null, null, null, mobile, email, null);
+    }
+
     public List<ContactData> getContactsList() {
         List<ContactData> contacts = new ArrayList<ContactData>();
         List<WebElement> elements = getWd().findElements(By.xpath("//table[@id='maintable']/tbody/tr[@name='entry']"));
         for (WebElement e : elements) {
-            List<WebElement> fields = e.findElements(By.tagName("td"));
-            String last_name = fields.get(1).getText();
-            String first_name = fields.get(2).getText();
-            String email = fields.get(4).getText();
-            String mobile = fields.get(5).getText();
-            String id = fields.get(6).findElement(By.cssSelector("a")).getAttribute("href");
-            contacts.add(new ContactData(id, first_name, last_name, null, null, null, mobile, email, null));
+            ContactData contact = extarctContactFromRow(e.findElements(By.tagName("td")));
+            contacts.add(contact);
         }
         return contacts;
     }
