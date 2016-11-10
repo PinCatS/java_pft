@@ -15,7 +15,7 @@ public class GroupDeletionTests extends TestBase {
             app.getGroupHelper().createGroup(new GroupData("Test1", null, null));
         }
         List<GroupData> before = app.getGroupHelper().getGroupList();
-        int rand_index = app.getRandom().nextInt(before.size() - 1);
+        int rand_index = app.getRandom().nextInt(before.size());
         app.getGroupHelper().selectGroup(rand_index);
         app.getGroupHelper().deleteGroup();
         app.getNavigationHelper().returnToGroupPage();

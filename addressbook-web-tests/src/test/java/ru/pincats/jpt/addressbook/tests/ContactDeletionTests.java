@@ -15,7 +15,7 @@ public class ContactDeletionTests extends TestBase {
             app.getContactHelper().createContact(new ContactData("Sergey", "Li", "pincats", "Principal Software Engineer", "DELL EMC", "+79213120869", "pincats@gmail.com", "test1"));
         }
         List<ContactData> before = app.getContactHelper().getContactsList();
-        int random_index = app.getRandom().nextInt(before.size() - 1);
+        int random_index = app.getRandom().nextInt(before.size());
         app.getContactHelper().selectContact(random_index);
         app.getContactHelper().deleteContact();
         app.getContactHelper().acceptContactDeletion();

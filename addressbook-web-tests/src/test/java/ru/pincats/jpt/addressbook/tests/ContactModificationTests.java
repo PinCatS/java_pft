@@ -20,7 +20,7 @@ public class ContactModificationTests extends TestBase {
             app.getContactHelper().createContact(new ContactData("Sergey", "Li", "pincats", "Principal Software Engineer", "DELL EMC", "+79213120869", "pincats@gmail.com", "test1"));
         }
         List<ContactData> before = app.getContactHelper().getContactsList();
-        int random_index = app.getRandom().nextInt(before.size() - 1);
+        int random_index = app.getRandom().nextInt(before.size());
         app.getContactHelper().initContactModification(random_index);
         ContactData new_contact = new ContactData(before.get(random_index).getId(),"Sergey2", null, null, null, null, null, null, null);
         app.getContactHelper().fillContactForm(new_contact, false);
