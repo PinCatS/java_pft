@@ -2,42 +2,58 @@ package ru.pincats.jpt.addressbook.model;
 
 public class ContactData {
     private int id;
-    private final String firstName;
-    private final String lastName;
-    private final String nickname;
-    private final String title;
-    private final String company;
-    private final String mobile;
-    private final String email;
-    private final String group;
+    private String firstName;
+    private String lastName;
+    private String nickname;
+    private String title;
+    private String company;
+    private String mobile;
+    private String email;
+    private String group;
 
-    public ContactData(int id, String firstName, String lastName, String nickname, String title, String company, String mobile, String email, String group) {
+    public ContactData withId(int id) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.nickname = nickname;
-        this.title = title;
-        this.company = company;
-        this.mobile = mobile;
-        this.email = email;
-        this.group = group;
+        return this;
     }
 
-    public ContactData(String firstName, String lastName, String nickname, String title, String company, String mobile, String email, String group) {
-        this.id = Integer.MAX_VALUE;
+    public ContactData withFirstName(String firstName) {
         this.firstName = firstName;
-        this.lastName = lastName;
-        this.nickname = nickname;
-        this.title = title;
-        this.company = company;
-        this.mobile = mobile;
-        this.email = email;
-        this.group = group;
+        return this;
     }
 
+    public ContactData withLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
 
-    public void setId(int id) {
-        this.id = id;
+    public ContactData withNickname(String nickname) {
+        this.nickname = nickname;
+        return this;
+    }
+
+    public ContactData withTitle(String title) {
+        this.title = title;
+        return this;
+    }
+
+    public ContactData withCompany(String company) {
+        this.company = company;
+        return this;
+    }
+
+    public ContactData withMobile(String mobile) {
+        this.mobile = mobile;
+        return this;
+    }
+
+    public ContactData withEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public ContactData withGroup(String group) {
+        this.group = group;
+        return this;
     }
 
     public int getId() {

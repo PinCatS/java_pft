@@ -13,7 +13,11 @@ public class ContactAdditionTests extends TestBase {
     public void testContactAddition() {
         app.goTo().homePage();
         List<ContactData> before = app.contact().list();
-        ContactData contact = new ContactData("Sergey", "Li", "pincats", "Principal Software Engineer", "DELL EMC", "+79213120869", "pincats@gmail.com", "test1");
+        ContactData contact = new ContactData()
+                                        .withFirstName("Sergey").withLastName("Li")
+                                        .withNickname("pincats").withTitle("Principal Software Engineer")
+                                        .withCompany("DELL EMC").withMobile("+79213120869")
+                                        .withEmail("pincats@gmail.com").withGroup("test1");
         app.contact().create(contact);
         List<ContactData> after = app.contact().list();
         Assert.assertEquals(after.size(), before.size() + 1);

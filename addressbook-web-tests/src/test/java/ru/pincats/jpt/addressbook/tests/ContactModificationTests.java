@@ -16,7 +16,7 @@ public class ContactModificationTests extends TestBase {
     public void insurePrecondions() {
         app.goTo().homePage();
         if (app.contact().list().size() == 0) {
-            app.contact().create(new ContactData("Sergey", "Li", "pincats", "Principal Software Engineer", "DELL EMC", "+79213120869", "pincats@gmail.com", "test1"));
+            app.contact().create(new ContactData().withFirstName("Sergey"));
         }
     }
 
@@ -24,12 +24,15 @@ public class ContactModificationTests extends TestBase {
     public void testContactModification() {
         List<ContactData> before = app.contact().list();
         int random_index = app.getRandom().nextInt(before.size());
-        ContactData new_contact = new ContactData(before.get(random_index).getId(),"Sergey2", null, null, null, null, null, null, null);
-        app.contact().modify(random_index, new_contact);
+        ContactData modified_contact = new ContactData().withId(before.get(random_index).getId())
+                .withFirstName("Sergey2").withLastName("Li")
+                .withNickname("pincats").withTitle("Principal Software Engineer")
+                .withCompany("DELL EMC").withMobile("+79213120869")
+                .withEmail("pincats@gmail.com").withGroup("test1");
+        app.contact().modify(random_index, modified_contact);
         List<ContactData> after = app.contact().list();
         Assert.assertEquals(after.size(), before.size());
 
-        ContactData modified_contact = new ContactData(before.get(random_index).getId(), "Sergey2", "Li", "pincats", "Principal Software Engineer", "DELL EMC", "+79213120869", "pincats@gmail.com", "test1");
         before.remove(random_index);
         before.add(modified_contact);
 

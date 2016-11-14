@@ -111,7 +111,8 @@ public class ContactHelper extends HelperBase{
         String mobile = fields.get(5).getText();
         String href_with_id = fields.get(6).findElement(By.cssSelector("a")).getAttribute("href");
         int id = Integer.parseInt(href_with_id.substring(href_with_id.indexOf("id=")+3));
-        return new ContactData(id, first_name, last_name, null, null, null, mobile, email, null);
+        return new ContactData()
+                .withId(id).withFirstName(first_name).withLastName(last_name).withMobile(mobile).withEmail(email);
     }
 
     public List<ContactData> list() {
