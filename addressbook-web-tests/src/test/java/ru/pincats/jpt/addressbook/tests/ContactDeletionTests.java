@@ -1,6 +1,7 @@
 package ru.pincats.jpt.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.pincats.jpt.addressbook.model.ContactData;
 
@@ -8,12 +9,16 @@ import java.util.List;
 
 public class ContactDeletionTests extends TestBase {
 
-    @Test
-    public void testContactDeletion() {
+    @BeforeMethod
+    public void insurePreconditions() {
         app.getNavigationHelper().gotoHomePage();
         if (!app.getContactHelper().isThereAContact()) {
             app.getContactHelper().createContact(new ContactData("Sergey", "Li", "pincats", "Principal Software Engineer", "DELL EMC", "+79213120869", "pincats@gmail.com", "test1"));
         }
+    }
+
+    @Test
+    public void testContactDeletion() {
         List<ContactData> before = app.getContactHelper().getContactsList();
         int random_index = app.getRandom().nextInt(before.size());
         app.getContactHelper().selectContact(random_index);

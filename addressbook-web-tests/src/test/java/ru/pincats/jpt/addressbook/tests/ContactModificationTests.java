@@ -1,6 +1,7 @@
 package ru.pincats.jpt.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.pincats.jpt.addressbook.model.ContactData;
 
@@ -11,19 +12,20 @@ import java.util.List;
  */
 public class ContactModificationTests extends TestBase {
 
-    @Test
-    public void testContactModification() {
+    @BeforeMethod
+    public void insurePrecondions() {
         app.getNavigationHelper().gotoHomePage();
         if (!app.getContactHelper().isThereAContact()) {
             app.getContactHelper().createContact(new ContactData("Sergey", "Li", "pincats", "Principal Software Engineer", "DELL EMC", "+79213120869", "pincats@gmail.com", "test1"));
         }
+    }
+
+    @Test
+    public void testContactModification() {
         List<ContactData> before = app.getContactHelper().getContactsList();
         int random_index = app.getRandom().nextInt(before.size());
-        app.getContactHelper().initContactModification(random_index);
         ContactData new_contact = new ContactData(before.get(random_index).getId(),"Sergey2", null, null, null, null, null, null, null);
-        app.getContactHelper().fillContactForm(new_contact, false);
-        app.getContactHelper().submitContactModification();
-        app.getNavigationHelper().returnToHomePage();
+        app.getContactHelper().modifyContact(random_index, new_contact);
         List<ContactData> after = app.getContactHelper().getContactsList();
         Assert.assertEquals(after.size(), before.size());
 
@@ -35,5 +37,4 @@ public class ContactModificationTests extends TestBase {
         after.sort(app.getContactHelper().getComparatorById());
         Assert.assertEquals(after, before);
     }
-
 }

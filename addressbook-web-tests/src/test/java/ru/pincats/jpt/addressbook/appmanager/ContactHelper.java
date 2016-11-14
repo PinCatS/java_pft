@@ -82,6 +82,13 @@ public class ContactHelper extends HelperBase{
         app.getNavigationHelper().returnToHomePage();
     }
 
+    public void modifyContact(int index, ContactData contact) {
+        initContactModification(index);
+        fillContactForm(contact, false);
+        submitContactModification();
+        app.getNavigationHelper().returnToHomePage();
+    }
+
     public Comparator<? super ContactData> getComparatorById() {
         return comparatorById;
     }
