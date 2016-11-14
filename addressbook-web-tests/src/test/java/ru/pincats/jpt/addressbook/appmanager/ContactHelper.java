@@ -5,8 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import ru.pincats.jpt.addressbook.model.ContactData;
+import ru.pincats.jpt.addressbook.model.Contacts;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * Created by PinCatS on 30.10.2016.
@@ -96,7 +98,7 @@ public class ContactHelper extends HelperBase{
     public int getContactsNumber() {
         return getWd().findElements(By.name("selected[]")).size();
     }
-    
+
     public boolean isThereAContact() {
         return isElementPresent(By.name("selected[]"));
     }
@@ -111,8 +113,8 @@ public class ContactHelper extends HelperBase{
                 .withId(Integer.parseInt(id)).withFirstName(first_name).withLastName(last_name).withMobile(mobile).withEmail(email);
     }
 
-    public Set<ContactData> all() {
-        Set<ContactData> contacts = new HashSet<ContactData>();
+    public Contacts all() {
+        Contacts contacts = new Contacts();
         List<WebElement> elements = getWd().findElements(By.xpath("//table[@id='maintable']/tbody/tr[@name='entry']"));
         for (WebElement e : elements) {
             ContactData contact = extarctContactFromRow(e.findElements(By.tagName("td")));

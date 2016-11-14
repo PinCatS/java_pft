@@ -4,8 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.pincats.jpt.addressbook.model.GroupData;
+import ru.pincats.jpt.addressbook.model.Groups;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * Created by PinCatS on 30.10.2016.
@@ -85,8 +87,8 @@ public class GroupHelper extends HelperBase {
         return getWd().findElements(By.name("selected[]")).size();
     }
 
-    public Set<GroupData> all() {
-        Set<GroupData> groups = new HashSet<GroupData>();
+    public Groups all() {
+        Groups groups = new Groups();
         List<WebElement> elements = getWd().findElements(By.cssSelector("span.group"));
         for (WebElement e : elements) {
             String name = e.getText();
