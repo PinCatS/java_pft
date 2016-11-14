@@ -54,7 +54,7 @@ public class ContactHelper extends HelperBase{
         click(By.xpath("//div[@id='content']//input[@value='Delete']"));
     }
 
-    public void selectContact(int index) {
+    public void select(int index) {
         getWd().findElements(By.name("selected[]")).get(index).click();
     }
 
@@ -75,18 +75,25 @@ public class ContactHelper extends HelperBase{
         return isElementPresent(By.name("selected[]"));
     }
 
-    public void createContact(ContactData contact) {
-        app.getNavigationHelper().gotoAddNewPage();
+    public void create(ContactData contact) {
+        app.goTo().gotoAddNewPage();
         fillContactForm(contact, true);
         submitAddNewForm();
-        app.getNavigationHelper().returnToHomePage();
+        app.goTo().returnToHomePage();
     }
 
-    public void modifyContact(int index, ContactData contact) {
+    public void modify(int index, ContactData contact) {
         initContactModification(index);
         fillContactForm(contact, false);
         submitContactModification();
-        app.getNavigationHelper().returnToHomePage();
+        app.goTo().returnToHomePage();
+    }
+
+    public void delete(int index) {
+        app.contact().select(index);
+        app.contact().deleteContact();
+        app.contact().acceptContactDeletion();
+        app.goTo().homePage();
     }
 
     public Comparator<? super ContactData> getComparatorById() {
@@ -107,7 +114,7 @@ public class ContactHelper extends HelperBase{
         return new ContactData(id, first_name, last_name, null, null, null, mobile, email, null);
     }
 
-    public List<ContactData> getContactsList() {
+    public List<ContactData> list() {
         List<ContactData> contacts = new ArrayList<ContactData>();
         List<WebElement> elements = getWd().findElements(By.xpath("//table[@id='maintable']/tbody/tr[@name='entry']"));
         for (WebElement e : elements) {

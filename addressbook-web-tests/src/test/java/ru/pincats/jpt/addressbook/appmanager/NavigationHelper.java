@@ -39,17 +39,17 @@ public class NavigationHelper extends HelperBase {
         return false;
     }
 
-    public void returnToGroupPage() {
+    public void backToGroupPage() {
         if (isGroupPage()) return;
         click(By.linkText("group page"));
     }
 
-    public void gotoGroupPage() {
+    public void groupPage() {
         if (isGroupPage()) return;
         click(By.linkText("groups"));
     }
 
-    public void gotoHomePage() {
+    public void homePage() {
         if (isHomePage()) return;
         click(By.linkText("home"));
     }
