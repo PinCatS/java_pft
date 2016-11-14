@@ -6,9 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import ru.pincats.jpt.addressbook.model.ContactData;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by PinCatS on 30.10.2016.
@@ -54,13 +52,12 @@ public class ContactHelper extends HelperBase{
         click(By.xpath("//div[@id='content']//input[@value='Delete']"));
     }
 
-    public void select(int index) {
-        getWd().findElements(By.name("selected[]")).get(index).click();
+    public void selectById(int id) {
+        getWd().findElement(By.cssSelector("input[id='" + id + "']")).click();
     }
 
-    public void initContactModification(int index) {
-        index += 2; // difference between selected[] and tr indexing
-        click(By.xpath("//table[@id='maintable']/tbody/tr[" + index + "]/td[8]/a/img"));
+    public void initContactModificationById(int id) {
+        getWd().findElement(By.cssSelector("a[href='edit.php?id=" + id + "']")).click();
     }
 
     public void submitContactModification() {
@@ -71,10 +68,6 @@ public class ContactHelper extends HelperBase{
         getWd().switchTo().alert().accept();
     }
 
-    public boolean isThereAContact() {
-        return isElementPresent(By.name("selected[]"));
-    }
-
     public void create(ContactData contact) {
         app.goTo().gotoAddNewPage();
         fillContactForm(contact, true);
@@ -82,15 +75,15 @@ public class ContactHelper extends HelperBase{
         app.goTo().returnToHomePage();
     }
 
-    public void modify(int index, ContactData contact) {
-        initContactModification(index);
+    public void modify(ContactData contact) {
+        initContactModificationById(contact.getId());
         fillContactForm(contact, false);
         submitContactModification();
         app.goTo().returnToHomePage();
     }
 
-    public void delete(int index) {
-        app.contact().select(index);
+    public void delete(ContactData deletedData) {
+        app.contact().selectById(deletedData.getId());
         app.contact().deleteContact();
         app.contact().acceptContactDeletion();
         app.goTo().homePage();
@@ -103,20 +96,23 @@ public class ContactHelper extends HelperBase{
     public int getContactsNumber() {
         return getWd().findElements(By.name("selected[]")).size();
     }
+    
+    public boolean isThereAContact() {
+        return isElementPresent(By.name("selected[]"));
+    }
 
     private ContactData extarctContactFromRow(List<WebElement> fields) {
         String last_name = fields.get(1).getText();
         String first_name = fields.get(2).getText();
         String email = fields.get(4).getText();
         String mobile = fields.get(5).getText();
-        String href_with_id = fields.get(6).findElement(By.cssSelector("a")).getAttribute("href");
-        int id = Integer.parseInt(href_with_id.substring(href_with_id.indexOf("id=")+3));
+        String id = fields.get(0).findElement(By.tagName("input")).getAttribute("id");
         return new ContactData()
-                .withId(id).withFirstName(first_name).withLastName(last_name).withMobile(mobile).withEmail(email);
+                .withId(Integer.parseInt(id)).withFirstName(first_name).withLastName(last_name).withMobile(mobile).withEmail(email);
     }
 
-    public List<ContactData> list() {
-        List<ContactData> contacts = new ArrayList<ContactData>();
+    public Set<ContactData> all() {
+        Set<ContactData> contacts = new HashSet<ContactData>();
         List<WebElement> elements = getWd().findElements(By.xpath("//table[@id='maintable']/tbody/tr[@name='entry']"));
         for (WebElement e : elements) {
             ContactData contact = extarctContactFromRow(e.findElements(By.tagName("td")));

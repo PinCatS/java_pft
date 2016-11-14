@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import ru.pincats.jpt.addressbook.model.GroupData;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by PinCatS on 30.10.2016.
@@ -15,25 +16,23 @@ public class GroupModificationTests extends TestBase {
     @BeforeMethod
     public void insurePreconditions() {
         app.goTo().groupPage();
-        if (app.group().list().size() == 0) {
+        if (app.group().all().size() == 0) {
             app.group().create(new GroupData().withName("test1").withHeader("test2").withFooter("test3"));
         }
     }
 
     @Test
     public void testGroupModification() {
-        List<GroupData> before = app.group().list();
-        int random_index = app.getRandom().nextInt(before.size());
-        GroupData new_group = new GroupData().withId(before.get(random_index).getId()).withName("test9");
-        app.group().modify(random_index, new_group);
-        List<GroupData> after = app.group().list();
+        Set<GroupData> before = app.group().all();
+        GroupData modifiedGroup = before.iterator().next();
+        GroupData group = new GroupData().withId(modifiedGroup.getId()).withName("test9");
+        app.group().modify(group);
+        Set<GroupData> after = app.group().all();
         Assert.assertEquals(after.size(), before.size());
 
-        before.remove(random_index);
-        before.add(new_group); // note: we obtain only name elem of group data, that is why I can use here new_group
+        before.remove(modifiedGroup);
+        before.add(group); // note: we obtain only name elem of group data, that is why I can use here new_group
 
-        before.sort(app.group().getComparatorById());
-        after.sort(app.group().getComparatorById());
         Assert.assertEquals(after, before);
     }
 }
