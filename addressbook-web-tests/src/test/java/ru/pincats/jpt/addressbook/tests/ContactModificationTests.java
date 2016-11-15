@@ -28,7 +28,7 @@ public class ContactModificationTests extends TestBase {
         ContactData contact = new ContactData().withId(modifiedContact.getId())
                 .withFirstName("Sergey2").withLastName("Li")
                 .withNickname("pincats").withTitle("Principal Software Engineer")
-                .withCompany("DELL EMC").withMobile("+79213120869")
+                .withCompany("DELL EMC").withMobilePhone("+79213120869")
                 .withEmail("pincats@gmail.com").withGroup("test1");
         app.contact().modify(contact);
         assertThat(app.contact().count(), equalTo(before.size()));

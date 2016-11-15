@@ -35,7 +35,9 @@ public class ContactHelper extends HelperBase{
         type(By.name("nickname"),contactData.getNickname());
         type(By.name("title"),contactData.getTitle());
         type(By.name("company"),contactData.getCompany());
-        type(By.name("mobile"),contactData.getMobile());
+        type(By.name("mobile"),contactData.getMobilePhone());
+        type(By.name("home"),contactData.getHomePhone());
+        type(By.name("work"),contactData.getWorkPhone());
         type(By.name("email"),contactData.getEmail());
 
         if (creation) {
@@ -60,6 +62,21 @@ public class ContactHelper extends HelperBase{
 
     public void initContactModificationById(int id) {
         getWd().findElement(By.cssSelector("a[href='edit.php?id=" + id + "']")).click();
+    }
+
+    public ContactData infoFromEditForm(ContactData contact) {
+        initContactModificationById(contact.getId());
+        String lastName = getWd().findElement(By.name("lastname")).getAttribute("value");
+        String firstName = getWd().findElement(By.name("firstname")).getAttribute("value");
+        String email = getWd().findElement(By.name("email")).getAttribute("value");
+        String homePhone = getWd().findElement(By.name("home")).getAttribute("value");
+        String mobilePhone = getWd().findElement(By.name("mobile")).getAttribute("value");
+        String workPhone = getWd().findElement(By.name("work")).getAttribute("value");
+
+        return new ContactData().withId(contact.getId())
+                .withLastName(lastName).withFirstName(firstName)
+                .withEmail(email)
+                .withHomePhone(homePhone).withMobilePhone(mobilePhone).withWorkPhone(workPhone);
     }
 
     public void submitContactModification() {
@@ -107,13 +124,16 @@ public class ContactHelper extends HelperBase{
     }
 
     private ContactData extarctContactFromRow(List<WebElement> fields) {
-        String last_name = fields.get(1).getText();
-        String first_name = fields.get(2).getText();
+        String lastName = fields.get(1).getText();
+        String firstName = fields.get(2).getText();
         String email = fields.get(4).getText();
-        String mobile = fields.get(5).getText();
+        String allPhones = fields.get(5).getText();
         String id = fields.get(0).findElement(By.tagName("input")).getAttribute("id");
+
         return new ContactData()
-                .withId(Integer.parseInt(id)).withFirstName(first_name).withLastName(last_name).withMobile(mobile).withEmail(email);
+                .withId(Integer.parseInt(id))
+                .withFirstName(firstName).withLastName(lastName)
+                .withEmail(email).withAllPhones(allPhones);
     }
 
     private Contacts contactsCache = null;
