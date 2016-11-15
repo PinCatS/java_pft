@@ -98,7 +98,7 @@ public class ContactHelper extends HelperBase{
         return comparatorById;
     }
 
-    public int getContactsNumber() {
+    public int count() {
         return getWd().findElements(By.name("selected[]")).size();
     }
 

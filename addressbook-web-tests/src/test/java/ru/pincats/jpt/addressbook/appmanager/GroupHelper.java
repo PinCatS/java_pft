@@ -86,7 +86,7 @@ public class GroupHelper extends HelperBase {
         return comparatorById;
     }
 
-    public int getGroupNumber() {
+    public int count() {
         return getWd().findElements(By.name("selected[]")).size();
     }
 
