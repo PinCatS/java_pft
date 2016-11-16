@@ -21,9 +21,9 @@ public class ContactPhonesTests extends TestBase {
         app.goTo().homePage();
         if (app.contact().all().size() == 0) {
             app.contact().create(new ContactData()
-                                        .withFirstName("Sergey").withLastName("Li")
-                                        .withHomePhone("(812)535-68-62").withMobilePhone("+7(921)312-08-69")
-                                        .withWorkPhone("(812) 542 68 24"));
+                                    .withFirstName("Sergey").withLastName("Li")
+                                    .withHomePhone("(812)535-68-62").withMobilePhone("+7(921)312-08-69")
+                                    .withWorkPhone("(812) 542 68 24").withHomePhone2("8 (812) 456 00 00"));
         }
     }
 
@@ -35,7 +35,7 @@ public class ContactPhonesTests extends TestBase {
     }
 
     private String mergedPhones(ContactData contact) {
-        return Stream.of(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone())
+        return Stream.of(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone(), contact.getHomePhone2())
                     .filter((s) -> ! s.equals(""))
                     .map(ContactPhonesTests::cleaned)
                     .collect(Collectors.joining("\n"));

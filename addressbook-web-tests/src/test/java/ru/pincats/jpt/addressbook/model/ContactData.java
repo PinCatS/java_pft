@@ -7,10 +7,12 @@ public class ContactData {
     private String nickname;
     private String title;
     private String company;
+    private String postAddress;
     private String email;
     private String email2;
     private String email3;
     private String homePhone;
+    private String homePhone2;
     private String mobilePhone;
     private String workPhone;
     private String allPhones;
@@ -47,8 +49,18 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withPostAddress(String postAddress) {
+        this.postAddress = postAddress;
+        return this;
+    }
+
     public ContactData withHomePhone(String homePhone) {
         this.homePhone = homePhone;
+        return this;
+    }
+
+    public ContactData withHomePhone2(String homePhone2) {
+        this.homePhone2 = homePhone2;
         return this;
     }
 
@@ -116,8 +128,16 @@ public class ContactData {
         return company;
     }
 
+    public String getPostAddress() {
+        return postAddress;
+    }
+
     public String getHomePhone() {
         return homePhone;
+    }
+
+    public String getHomePhone2() {
+        return homePhone2;
     }
 
     public String getMobilePhone() {
