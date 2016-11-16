@@ -32,12 +32,16 @@ public class ContactEmailsTests extends TestBase {
     public void testContactEmails() {
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
-        assertThat(contact.getAllEmails(), equalTo(mergedEmails(contactInfoFromEditForm)));
+        assertThat(contact.getAllEmails(), equalTo(cleaned(mergedEmails(contactInfoFromEditForm))));
     }
 
     private String mergedEmails(ContactData contact) {
         return Stream.of(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
                     .filter((s) -> ! s.equals(""))
                     .collect(Collectors.joining("\n"));
+    }
+
+    private static String cleaned(String email) {
+        return email.replaceAll(" +"," "); // weird stuff...pincats@gmail. com is acceptable...
     }
 }

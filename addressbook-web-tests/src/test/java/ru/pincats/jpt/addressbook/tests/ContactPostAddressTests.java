@@ -26,9 +26,13 @@ public class ContactPostAddressTests extends TestBase {
     }
 
     @Test
-    public void testContactEmails() {
+    public void testContactPostAddress() {
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
-        assertThat(contact.getPostAddress(), equalTo(contactInfoFromEditForm.getPostAddress()));
+        assertThat(contact.getPostAddress(), equalTo(cleaned(contactInfoFromEditForm.getPostAddress())));
+    }
+
+    private static String cleaned(String address) {
+        return address.replaceAll("\\s+"," ");
     }
 }
