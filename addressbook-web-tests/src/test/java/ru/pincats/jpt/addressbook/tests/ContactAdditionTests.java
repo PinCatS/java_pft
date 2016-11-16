@@ -15,7 +15,6 @@ public class ContactAdditionTests extends TestBase {
         Contacts before = app.contact().all();
         ContactData contact = new ContactData()
                                         .withFirstName("Sergey").withLastName("Li")
-                                        .withNickname("pincats").withTitle("Principal Software Engineer")
                                         .withCompany("DELL EMC").withMobilePhone("+79213120869")
                                         .withEmail("pincats@gmail.com").withGroup("test1");
         app.contact().create(contact);

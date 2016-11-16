@@ -68,10 +68,17 @@ public class ContactHelper extends HelperBase{
         getWd().findElement(By.cssSelector("a[href='edit.php?id=" + id + "']")).click();
     }
 
+    public void gotoContactViewFormById(int id) {
+        getWd().findElement(By.cssSelector("a[href='view.php?id=" + id + "']")).click();
+    }
+
     public ContactData infoFromEditForm(ContactData contact) {
         initContactModificationById(contact.getId());
         String lastName = getWd().findElement(By.name("lastname")).getAttribute("value");
         String firstName = getWd().findElement(By.name("firstname")).getAttribute("value");
+        String nickname = getWd().findElement(By.name("nickname")).getAttribute("value");
+        String company = getWd().findElement(By.name("company")).getAttribute("value");
+        String title = getWd().findElement(By.name("title")).getAttribute("value");
         String email = getWd().findElement(By.name("email")).getAttribute("value");
         String email2 = getWd().findElement(By.name("email2")).getAttribute("value");
         String email3 = getWd().findElement(By.name("email3")).getAttribute("value");
@@ -81,11 +88,26 @@ public class ContactHelper extends HelperBase{
         String workPhone = getWd().findElement(By.name("work")).getAttribute("value");
         String homePhone2 = getWd().findElement(By.name("phone2")).getAttribute("value");
 
+        app.goTo().homePage();
+
         return new ContactData().withId(contact.getId())
-                .withLastName(lastName).withFirstName(firstName)
+                .withLastName(lastName).withFirstName(firstName).withNickname(nickname)
+                .withCompany(company).withTitle(title)
                 .withEmail(email).withEmail2(email2).withEmail3(email3)
                 .withHomePhone(homePhone).withMobilePhone(mobilePhone).withWorkPhone(workPhone).withHomePhone2(homePhone2)
                 .withPostAddress(postAddress);
+    }
+
+    public ContactData infoFromDetailsForm(ContactData contact) {
+        gotoContactViewFormById(contact.getId());
+        String content = getWd().findElement(By.id("content")).getText()
+                .replaceAll("[-()]", "").replaceAll("[MWHP]\\:", "")
+                .replaceAll("Member of[:]\\s+[\\w]+","") // for simplicity not gonna compare list of groups
+                .replaceAll(" +"," ").replaceAll("\\n+\\s*", "\n").replaceAll("\\n$", "");
+
+        app.goTo().homePage();
+
+        return new ContactData().withAllDetails(content);
     }
 
     public void submitContactModification() {

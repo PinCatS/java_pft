@@ -4,13 +4,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.pincats.jpt.addressbook.model.ContactData;
 
-import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static ru.pincats.jpt.addressbook.tests.TestBase.app;
 
 /**
  * Created by PinCatS on 16.11.2016.

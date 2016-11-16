@@ -20,10 +20,12 @@ public class ContactPhonesTests extends TestBase {
     public void insurePrecondions() {
         app.goTo().homePage();
         if (app.contact().all().size() == 0) {
-            app.contact().create(new ContactData()
-                                    .withFirstName("Sergey").withLastName("Li")
-                                    .withHomePhone("(812)535-68-62").withMobilePhone("+7(921)312-08-69")
-                                    .withWorkPhone("(812) 542 68 24").withHomePhone2("8 (812) 456 00 00"));
+            if (app.contact().all().size() == 0) {
+                app.contact().create(new ContactData()
+                        .withFirstName("Sergey").withLastName("Li")
+                        .withHomePhone("(812)535-68-62").withMobilePhone("+7(921)312-08-69")
+                        .withWorkPhone("(812) 542 68 24").withHomePhone2("8 (812) 456 00 00"));
+            }
         }
     }
 
