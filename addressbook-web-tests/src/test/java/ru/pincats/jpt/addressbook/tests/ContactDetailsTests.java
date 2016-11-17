@@ -38,7 +38,7 @@ public class ContactDetailsTests extends TestBase {
     }
 
     private String mergeAllInfo(ContactData contact) {
-        return Stream.of(contact.getFirstName() + " " + contact.getLastName(),
+        return Stream.of(contact.getFirstName(), contact.getLastName(),
                     contact.getNickname(), contact.getTitle(),
                     contact.getCompany(), contact.getPostAddress(),
                     contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone(),

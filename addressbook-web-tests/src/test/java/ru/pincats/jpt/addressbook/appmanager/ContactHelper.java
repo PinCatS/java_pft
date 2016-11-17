@@ -103,7 +103,8 @@ public class ContactHelper extends HelperBase{
         String content = getWd().findElement(By.id("content")).getText()
                 .replaceAll("[-()]", "").replaceAll("[MWHP]\\:", "")
                 .replaceAll("Member of[:]\\s+[\\w]+","") // for simplicity not gonna compare list of groups
-                .replaceAll(" +"," ").replaceAll("\\n+\\s*", "\n").replaceAll("\\n$", "");
+                .replaceAll(" +"," ").replaceAll("\\n+\\s*", "\n").replaceAll("\\n$", "")
+                .replaceFirst(" ", "\n");   // finally, split First and Last names
 
         app.goTo().homePage();
 
