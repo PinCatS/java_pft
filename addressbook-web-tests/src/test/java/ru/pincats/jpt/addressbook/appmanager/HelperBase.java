@@ -27,6 +27,11 @@ public class HelperBase {
         }
     }
 
+    protected void attach(By locator, String absolutePath) {
+        WebElement we = wd.findElement(locator);
+        we.sendKeys(absolutePath);
+    }
+
     protected void click(By locator) {
         try {
             wd.findElement(locator).click();

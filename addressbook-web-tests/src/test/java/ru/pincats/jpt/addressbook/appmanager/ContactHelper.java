@@ -43,6 +43,7 @@ public class ContactHelper extends HelperBase{
         type(By.name("email2"),contactData.getEmail2());
         type(By.name("email3"),contactData.getEmail3());
         type(By.name("address"),contactData.getPostAddress());
+        attach(By.name("photo"), contactData.getPhoto().getAbsolutePath());
 
         if (creation) {
             if (!isElementPresent(By.xpath("//select[@name='new_group']//option[text()='" + contactData.getGroup() + "']"))) {

@@ -1,5 +1,7 @@
 package ru.pincats.jpt.addressbook.model;
 
+import java.io.File;
+
 public class ContactData {
     private int id;
     private String firstName;
@@ -18,6 +20,8 @@ public class ContactData {
     private String allPhones;
     private String allEmails;
     private String group;
+
+    private File photo;
 
     private String allDetails;
 
@@ -55,6 +59,12 @@ public class ContactData {
         this.postAddress = postAddress;
         return this;
     }
+
+    public ContactData withPhoto(File photo) {
+        this.photo = photo;
+        return this;
+    }
+
 
     public ContactData withHomePhone(String homePhone) {
         this.homePhone = homePhone;
@@ -137,6 +147,10 @@ public class ContactData {
 
     public String getPostAddress() {
         return postAddress;
+    }
+
+    public File getPhoto() {
+        return photo;
     }
 
     public String getHomePhone() {
