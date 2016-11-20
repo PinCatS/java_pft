@@ -30,17 +30,17 @@ public class DataGenerator<G> {
         XStream xstream = new XStream();
         xstream.processAnnotations(new TypeToken<List<G>>(){}.getType().getClass());
         String xml = xstream.toXML(list);
-        Writer writer = new FileWriter(file);
-        writer.write(xml);
-        writer.close();
+        try(Writer writer = new FileWriter(file)) {
+            writer.write(xml);
+        }
     }
 
     private void saveAsJson(List<G> list, File file) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
         String json = gson.toJson(list);
-        Writer writer = new FileWriter(file);
-        writer.write(json);
-        writer.close();
+        try (Writer writer = new FileWriter(file)) {
+            writer.write(json);
+        }
     }
 
     protected void save(List<G> list, String file, String format) throws IOException {

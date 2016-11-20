@@ -15,14 +15,14 @@ import java.util.List;
 public class DataReader {
 
     public String readTestDataFrom(String filePath) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(new File(filePath)));
         String data = "";
-        String line = reader.readLine();
-        while (line != null) {
-            data += line;
-            line = reader.readLine();
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File(filePath)))) {
+            String line = reader.readLine();
+            while (line != null) {
+                data += line;
+                line = reader.readLine();
+            }
         }
-        reader.close();
         return data;
     }
 
