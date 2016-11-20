@@ -25,14 +25,14 @@ public class ContactAdditionTests extends TestBase {
 
     @DataProvider
     public Iterator<Object[]> validContactFromXml() throws IOException {
-        String xml = app.reader().readTestDataFrom("src/test/resources/contacts.xml");
+        String xml = app.reader().readTestDataFrom(app.properties().getProperty("contactTests.testDataSourceInXML"));
         List<ContactData> contacts = (List<ContactData>) app.reader().fromXML(xml, ContactData.class);
         return contacts.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
     }
 
     @DataProvider
     public Iterator<Object[]> validContactFromJson() throws IOException {
-        String json = app.reader().readTestDataFrom("src/test/resources/contacts.json");
+        String json = app.reader().readTestDataFrom(app.properties().getProperty("contactTests.testDataSourceInJson"));
         List<ContactData> contacts = (List<ContactData>) app.reader().fromJson(json, new TypeToken<List<ContactData>>(){}.getType());
         return contacts.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
     }
@@ -41,7 +41,7 @@ public class ContactAdditionTests extends TestBase {
     public void testContactAddition(ContactData contact) {
         app.goTo().homePage();
         Contacts before = app.contact().all();
-        contact.withPhoto(new File("src/test/resources/sergei.jpg"));
+        contact.withPhoto(new File(app.properties().getProperty("contactTests.testDataPhotoPath")));
         app.contact().create(contact);
         assertThat(app.contact().count(), equalTo(before.size() + 1));
         Contacts after = app.contact().all();

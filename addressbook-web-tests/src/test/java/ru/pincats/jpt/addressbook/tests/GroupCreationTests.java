@@ -23,14 +23,14 @@ public class GroupCreationTests extends TestBase {
 
     @DataProvider
     public Iterator<Object[]> validGroupsFromXml() throws IOException {
-        String xml = app.reader().readTestDataFrom("src/test/resources/groups.xml");
+        String xml = app.reader().readTestDataFrom(app.properties().getProperty("groupTests.testDataSourceInXML"));
         List<GroupData> groups = (List<GroupData>) app.reader().fromXML(xml, GroupData.class);
         return groups.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
     }
 
     @DataProvider
     public Iterator<Object[]> validGroupsFromJson() throws IOException {
-        String json = app.reader().readTestDataFrom("src/test/resources/groups.json");
+        String json = app.reader().readTestDataFrom(app.properties().getProperty("groupTests.testDataSourceInJson"));
         List<GroupData> groups = (List<GroupData>) app.reader().fromJson(json, new TypeToken<List<GroupData>>(){}.getType());
         return groups.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
     }

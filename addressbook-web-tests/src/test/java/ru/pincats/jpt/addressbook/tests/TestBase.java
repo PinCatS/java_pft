@@ -10,7 +10,8 @@ import ru.pincats.jpt.addressbook.appmanager.ApplictionManager;
  */
 public class TestBase {
 
-    protected static final ApplictionManager app = new ApplictionManager(BrowserType.CHROME);
+    protected static final ApplictionManager app
+            = new ApplictionManager(System.getProperty("browser", BrowserType.CHROME));
 
     @BeforeSuite
     public void setUp() throws Exception {
