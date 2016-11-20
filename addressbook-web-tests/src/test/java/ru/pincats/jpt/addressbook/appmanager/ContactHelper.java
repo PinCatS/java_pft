@@ -7,6 +7,7 @@ import org.testng.Assert;
 import ru.pincats.jpt.addressbook.model.ContactData;
 import ru.pincats.jpt.addressbook.model.Contacts;
 
+import java.io.File;
 import java.util.Comparator;
 import java.util.List;
 
@@ -43,7 +44,10 @@ public class ContactHelper extends HelperBase{
         type(By.name("email2"),contactData.getEmail2());
         type(By.name("email3"),contactData.getEmail3());
         type(By.name("address"),contactData.getPostAddress());
-        attach(By.name("photo"), contactData.getPhoto().getAbsolutePath());
+        File photo = contactData.getPhoto();
+        if (photo != null) {
+            attach(By.name("photo"), photo.getAbsolutePath());
+        }
 
         if (creation) {
             if (!isElementPresent(By.xpath("//select[@name='new_group']//option[text()='" + contactData.getGroup() + "']"))) {

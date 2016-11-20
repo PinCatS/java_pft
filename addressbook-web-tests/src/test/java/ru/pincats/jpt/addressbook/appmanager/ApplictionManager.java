@@ -22,6 +22,8 @@ public class ApplictionManager {
     private ContactHelper contactHelper;
     private NavigationHelper navigationHelper;
     private SessionHelper sessionHelper;
+
+    private DataReader reader;
     private String browser;
 
     public ApplictionManager(String browser) {
@@ -41,6 +43,7 @@ public class ApplictionManager {
         contactHelper = new ContactHelper(wd, this);
         navigationHelper = new NavigationHelper(wd, this);
         sessionHelper = new SessionHelper(wd, this);
+        reader = new DataReader();
         wd.get("http://localhost/addressbook/");
         getSessionHelper().login("admin", "secret");
     }
@@ -63,6 +66,10 @@ public class ApplictionManager {
 
     public SessionHelper getSessionHelper() {
         return sessionHelper;
+    }
+
+    public DataReader reader() {
+        return reader;
     }
 
     public Random getRandom() {
