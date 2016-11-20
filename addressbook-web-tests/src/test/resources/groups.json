@@ -13,10 +13,5 @@
     "name": "test 2",
     "header": "test header 2",
     "footer": "test footer 2"
-  },
-  {
-    "name": "test 3",
-    "header": "test header 3",
-    "footer": "test footer 3"
   }
 ]

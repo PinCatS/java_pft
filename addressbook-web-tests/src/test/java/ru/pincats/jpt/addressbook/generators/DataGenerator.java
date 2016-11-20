@@ -26,7 +26,7 @@ public class DataGenerator<G> {
     @Parameter(names = "-f", description = "Target file")
     protected String file;
 
-    protected void saveAsXml(List<G> list, File file) throws IOException {
+    private void saveAsXml(List<G> list, File file) throws IOException {
         XStream xstream = new XStream();
         xstream.processAnnotations(new TypeToken<List<G>>(){}.getType().getClass());
         String xml = xstream.toXML(list);
@@ -35,7 +35,7 @@ public class DataGenerator<G> {
         writer.close();
     }
 
-    protected void saveAsJson(List<G> list, File file) throws IOException {
+    private void saveAsJson(List<G> list, File file) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
         String json = gson.toJson(list);
         Writer writer = new FileWriter(file);
