@@ -14,11 +14,11 @@ import java.util.List;
  */
 public class GroupHelper extends HelperBase {
 
-    private ApplictionManager app;
+    private ApplicationManager app;
 
     private Comparator<? super GroupData> comparatorById;
 
-    public GroupHelper(WebDriver wd, ApplictionManager app) {
+    public GroupHelper(WebDriver wd, ApplicationManager app) {
         super(wd);
         this.app = app;
         comparatorById = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());

@@ -8,9 +8,9 @@ import org.openqa.selenium.WebDriver;
  */
 public class NavigationHelper extends HelperBase {
 
-    private ApplictionManager app;
+    private ApplicationManager app;
 
-    public NavigationHelper(WebDriver wd, ApplictionManager app) {
+    public NavigationHelper(WebDriver wd, ApplicationManager app) {
         super(wd);
         this.app = app;
     }

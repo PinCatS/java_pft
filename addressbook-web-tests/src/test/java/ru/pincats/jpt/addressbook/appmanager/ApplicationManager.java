@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by PinCatS on 30.10.2016.
  */
-public class ApplictionManager {
+public class ApplicationManager {
 
     WebDriver wd;
     private final Random random = new Random(); // no need in seed because by default it initialize using time
@@ -34,7 +34,7 @@ public class ApplictionManager {
         this.properties = properties;
     }
 
-    public ApplictionManager(String browser) {
+    public ApplicationManager(String browser) {
         this.browser = browser;
 
         properties = new Properties();

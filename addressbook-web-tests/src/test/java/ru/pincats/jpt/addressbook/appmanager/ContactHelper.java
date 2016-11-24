@@ -16,11 +16,11 @@ import java.util.List;
  */
 public class ContactHelper extends HelperBase{
 
-    private ApplictionManager app;
+    private ApplicationManager app;
 
     private Comparator<? super ContactData> comparatorById;
 
-    public ContactHelper(WebDriver wd, ApplictionManager app) {
+    public ContactHelper(WebDriver wd, ApplicationManager app) {
         super(wd);
         this.app = app;
         comparatorById = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());

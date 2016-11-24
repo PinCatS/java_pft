@@ -8,9 +8,9 @@ import org.openqa.selenium.WebDriver;
  */
 public class SessionHelper extends HelperBase {
 
-    private ApplictionManager app;
+    private ApplicationManager app;
 
-    public SessionHelper(WebDriver wd, ApplictionManager app) {
+    public SessionHelper(WebDriver wd, ApplicationManager app) {
         super(wd);
         this.app = app;
     }
