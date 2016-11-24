@@ -222,6 +222,9 @@ public class ContactData {
         if (photo == null) {
             return null;
         }
+        else if (photo.equals("")) {
+            return null;
+        }
         else {
             return new File(photo);
         }
