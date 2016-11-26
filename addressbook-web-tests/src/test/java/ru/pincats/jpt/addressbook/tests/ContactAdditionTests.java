@@ -38,13 +38,14 @@ public class ContactAdditionTests extends TestBase {
     }
 
     @Test(dataProvider = "validContactFromJson")
-    public void testContactAddition(ContactData contact) {
+    public void testContactAddition(ContactData contact) throws IllegalAccessException {
         app.goTo().homePage();
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         contact.withPhoto(new File(app.properties().getProperty("contactTests.testDataPhotoPath")));
         app.contact().create(contact);
         assertThat(app.contact().count(), equalTo(before.size() + 1));
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
+        ContactData.setStringNullMembersToEmpty(contact);
         assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
 
     }
