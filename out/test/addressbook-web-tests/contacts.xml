@@ -1,0 +1,41 @@
+<list>
+  <ru.pincats.jpt.addressbook.model.ContactData>
+    <id>0</id>
+    <firstName>Sergey0</firstName>
+    <lastName>Li</lastName>
+    <postAddress>278 Old Gate Lane, Milford, CT 06460, USA</postAddress>
+    <email>pincats0@gmail.com</email>
+    <email2>serj.li@emc.com</email2>
+    <email3>sweet-home@bro.eu</email3>
+    <homePhone>(812)535-68-62</homePhone>
+    <homePhone2>8 (812) 456 00 00</homePhone2>
+    <mobilePhone>+7(921)312-08-69</mobilePhone>
+    <workPhone>(812) 542 68 24</workPhone>
+  </ru.pincats.jpt.addressbook.model.ContactData>
+  <ru.pincats.jpt.addressbook.model.ContactData>
+    <id>0</id>
+    <firstName>Sergey1</firstName>
+    <lastName>Li</lastName>
+    <postAddress>278 Old Gate Lane, Milford, CT 06460, USA</postAddress>
+    <email>pincats1@gmail.com</email>
+    <email2>serj.li@emc.com</email2>
+    <email3>sweet-home@bro.eu</email3>
+    <homePhone>(812)535-68-62</homePhone>
+    <homePhone2>8 (812) 456 00 00</homePhone2>
+    <mobilePhone>+7(921)312-08-69</mobilePhone>
+    <workPhone>(812) 542 68 24</workPhone>
+  </ru.pincats.jpt.addressbook.model.ContactData>
+  <ru.pincats.jpt.addressbook.model.ContactData>
+    <id>0</id>
+    <firstName>Sergey2</firstName>
+    <lastName>Li</lastName>
+    <postAddress>278 Old Gate Lane, Milford, CT 06460, USA</postAddress>
+    <email>pincats2@gmail.com</email>
+    <email2>serj.li@emc.com</email2>
+    <email3>sweet-home@bro.eu</email3>
+    <homePhone>(812)535-68-62</homePhone>
+    <homePhone2>8 (812) 456 00 00</homePhone2>
+    <mobilePhone>+7(921)312-08-69</mobilePhone>
+    <workPhone>(812) 542 68 24</workPhone>
+  </ru.pincats.jpt.addressbook.model.ContactData>
+</list>

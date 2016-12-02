@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="SuiteGroups" verbose="1" >
+    <test name="Groups" >
+        <classes>
+            <class name="ru.pincats.jpt.addressbook.tests.GroupCreationTests"/>
+            <class name="ru.pincats.jpt.addressbook.tests.GroupModificationTests"/>
+            <class name="ru.pincats.jpt.addressbook.tests.GroupDeletionTests"/>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,38 @@
+[
+  {
+    "firstName": "Sergey0",
+    "lastName": "Li",
+    "postAddress": "278 Old Gate Lane, Milford, CT 06460, USA",
+    "email": "pincats0@gmail.com",
+    "email2": "serj.li@emc.com",
+    "email3": "sweet-home@bro.eu",
+    "homePhone": "(812)535-68-62",
+    "homePhone2": "8 (812) 456 00 00",
+    "mobilePhone": "+7(921)312-08-69",
+    "workPhone": "(812) 542 68 24"
+  },
+  {
+    "firstName": "Sergey1",
+    "lastName": "Li",
+    "postAddress": "278 Old Gate Lane, Milford, CT 06460, USA",
+    "email": "pincats1@gmail.com",
+    "email2": "serj.li@emc.com",
+    "email3": "sweet-home@bro.eu",
+    "homePhone": "(812)535-68-62",
+    "homePhone2": "8 (812) 456 00 00",
+    "mobilePhone": "+7(921)312-08-69",
+    "workPhone": "(812) 542 68 24"
+  },
+  {
+    "firstName": "Sergey2",
+    "lastName": "Li",
+    "postAddress": "278 Old Gate Lane, Milford, CT 06460, USA",
+    "email": "pincats2@gmail.com",
+    "email2": "serj.li@emc.com",
+    "email3": "sweet-home@bro.eu",
+    "homePhone": "(812)535-68-62",
+    "homePhone2": "8 (812) 456 00 00",
+    "mobilePhone": "+7(921)312-08-69",
+    "workPhone": "(812) 542 68 24"
+  }
+]

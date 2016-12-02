@@ -47,7 +47,7 @@ public class ContactAdditionTests extends TestBase {
         Contacts after = app.db().contacts();
         ContactData.setStringNullMembersToEmpty(contact);
         assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
-
+        verifyContactListInUI();
     }
 
 }

@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="SuiteContacts" verbose="1" >
+    <test name="Contacts" >
+        <classes>
+            <class name="ru.pincats.jpt.addressbook.tests.ContactAdditionTests"/>
+            <class name="ru.pincats.jpt.addressbook.tests.ContactModificationTests"/>
+            <class name="ru.pincats.jpt.addressbook.tests.ContactDetailsTests"/>
+            <class name="ru.pincats.jpt.addressbook.tests.ContactPhonesTests"/>
+            <class name="ru.pincats.jpt.addressbook.tests.ContactEmailsTests"/>
+            <class name="ru.pincats.jpt.addressbook.tests.ContactPostAddressTests"/>
+            <class name="ru.pincats.jpt.addressbook.tests.ContactDeletionTests"/>
+        </classes>
+    </test>
+</suite>
