@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import ru.pincats.jpt.addressbook.model.ContactData;
 import ru.pincats.jpt.addressbook.model.Contacts;
+import ru.pincats.jpt.addressbook.model.GroupData;
 
 import java.io.File;
 import java.util.Comparator;
@@ -118,6 +119,14 @@ public class ContactHelper extends HelperBase{
         click(By.xpath("//div[@id='content']//input[@value='Update']"));
     }
 
+    public void submitContactToGroupAddition() {
+        click(By.xpath("//input[@name='add']"));
+    }
+
+    public void submitContactFromGroupDeletion() {
+        click(By.xpath("//input[@name='remove']"));
+    }
+
     public void acceptContactDeletion() {
         getWd().switchTo().alert().accept();
     }
@@ -143,6 +152,20 @@ public class ContactHelper extends HelperBase{
         app.contact().deleteContact();
         app.contact().acceptContactDeletion();
         contactsCache = null;
+        app.goTo().homePage();
+    }
+
+    public  void addToGroup(ContactData contact, int groupId) {
+        selectById(contact.getId());
+        selectByValue(By.name("to_group"), Integer.toString(groupId));
+        submitContactToGroupAddition();
+        app.goTo().homePage();
+    }
+
+    public  void deleteFromGroup(ContactData contact, int groupId) {
+        selectByValue(By.name("group"), Integer.toString(groupId));
+        selectById(contact.getId());
+        submitContactFromGroupDeletion();
         app.goTo().homePage();
     }
 

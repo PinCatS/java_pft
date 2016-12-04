@@ -57,4 +57,14 @@ public class Groups extends ForwardingSet<GroupData> {
         groups.add(group);
         return groups;
     }
+
+    public GroupData getById(int id) {
+        GroupData groupData = null;
+        for (GroupData c : this) {
+            if (c.getId() == id) {
+                groupData = c;
+            }
+        }
+        return groupData;
+    }
 }

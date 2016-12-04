@@ -57,6 +57,12 @@ public class HelperBase {
         }
     }
 
+    protected void selectByValue(By locator, String text) {
+        if (text != null) {
+            new Select(wd.findElement(locator)).selectByValue(text);
+        }
+    }
+
 
     public boolean isAlertPresent() {
         try {
