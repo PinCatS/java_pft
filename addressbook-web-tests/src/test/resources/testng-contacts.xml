@@ -10,6 +10,8 @@
             <class name="ru.pincats.jpt.addressbook.tests.ContactEmailsTests"/>
             <class name="ru.pincats.jpt.addressbook.tests.ContactPostAddressTests"/>
             <class name="ru.pincats.jpt.addressbook.tests.ContactDeletionTests"/>
+            <class name="ru.pincats.jpt.addressbook.tests.ContactAdditionToGroupTests"/>
+            <class name="ru.pincats.jpt.addressbook.tests.ContactDeletionFromGroupTests"/>
         </classes>
     </test>
 </suite>

@@ -35,7 +35,6 @@ public class ContactAdditionToGroupTests extends TestBase {
         int numberOfGroups = app.db().groups().size();
         // we don't have any groups or contact is already in all groups ==> create the new one
         if (numberOfGroups == 0 || contactToAddToGroup.getGroups().size() == numberOfGroups) {
-
             GroupData newGroup = new GroupData().withName("test1").withHeader("test2").withFooter("test3");
             app.goTo().groupPage();
             app.group().create(newGroup);
