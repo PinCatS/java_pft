@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import ru.pincats.jpt.addressbook.model.ContactData;
 import ru.pincats.jpt.addressbook.model.Contacts;
 import ru.pincats.jpt.addressbook.model.GroupData;
+import ru.pincats.jpt.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -40,8 +41,10 @@ public class ContactAdditionTests extends TestBase {
     @Test(dataProvider = "validContactFromJson")
     public void testContactAddition(ContactData contact) throws IllegalAccessException {
         app.goTo().homePage();
+        Groups groups = app.db().groups();
         Contacts before = app.db().contacts();
-        contact.withPhoto(new File(app.properties().getProperty("contactTests.testDataPhotoPath")));
+        contact.withPhoto(new File(app.properties().getProperty("contactTests.testDataPhotoPath")))
+                .withGroup(groups.iterator().next());
         app.contact().create(contact);
         assertThat(app.contact().count(), equalTo(before.size() + 1));
         Contacts after = app.db().contacts();

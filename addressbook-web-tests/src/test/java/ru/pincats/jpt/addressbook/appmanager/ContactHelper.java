@@ -50,11 +50,9 @@ public class ContactHelper extends HelperBase{
         }
 
         if (creation) {
-            if (!isElementPresent(By.xpath("//select[@name='new_group']//option[text()='" + contactData.getGroup() + "']"))) {
-                select(By.name("new_group"), "[none]"); // at least should be [none] value
-            }
-            else {
-                select(By.name("new_group"), contactData.getGroup());
+            if (contactData.getGroups().size() > 0) {
+                Assert.assertTrue(contactData.getGroups().size() == 1);
+                select(By.name("new_group"), contactData.getGroups().iterator().next().getName());
             }
         } else {
             Assert.assertEquals(isElementPresent(By.name("new_group")), false);

@@ -3,11 +3,14 @@ package ru.pincats.jpt.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.ManyToAny;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
 import java.lang.reflect.Field;
+import java.util.HashSet;
+import java.util.Set;
 
 @XStreamAlias("contact")
 @Entity
@@ -84,9 +87,9 @@ public class ContactData {
     @Transient
     private String allEmails;
 
-    @Expose
-    @Transient
-    private String group;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+    Set<GroupData> groups = new HashSet<GroupData>();
 
     @Column(name = "photo")
     @Type(type = "text")
@@ -181,8 +184,8 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withGroup(String group) {
-        this.group = group;
+    public ContactData withGroup(GroupData group) {
+        this.groups.add(group);
         return this;
     }
 
@@ -271,8 +274,8 @@ public class ContactData {
         return allDetails;
     }
 
-    public String getGroup() {
-        return group;
+    public Groups getGroups() {
+        return new Groups(groups);
     }
 
     public static void setStringNullMembersToEmpty(ContactData object) throws IllegalArgumentException, IllegalAccessException {

@@ -33,8 +33,7 @@ public class ContactModificationTests extends TestBase {
                 .withCompany("DELL EMC").withMobilePhone("+79213120869")
                 .withPostAddress("278 Old Gate Lane, Milford, CT 06460, USA")
                 .withHomePhone("(812)535-68-62").withHomePhone2("8 (812) 456 00 00").withWorkPhone("(812) 542 68 24")
-                .withEmail("pincats@gmail.com").withEmail2("serj.li@emc.com").withEmail3("sweet-home@bro.eu")
-                .withGroup("test1");
+                .withEmail("pincats@gmail.com").withEmail2("serj.li@emc.com").withEmail3("sweet-home@bro.eu");
         app.contact().modify(contact);
         assertThat(app.contact().count(), equalTo(before.size()));
         Contacts after = app.db().contacts();
