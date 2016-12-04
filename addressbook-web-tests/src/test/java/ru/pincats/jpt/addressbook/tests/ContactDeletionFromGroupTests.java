@@ -41,6 +41,7 @@ public class ContactDeletionFromGroupTests extends TestBase {
             // assign newly created group to contact
             app.goTo().homePage();
             app.contact().addToGroup(contactToRemoveFromGroup, group.getId());
+            syncDataWithDb();
         }
 
         if (contactToRemoveFromGroup.getGroups().size() > 0) {
@@ -52,7 +53,13 @@ public class ContactDeletionFromGroupTests extends TestBase {
             group = app.db().groups().iterator().next();
             app.goTo().homePage();
             app.contact().addToGroup(contactToRemoveFromGroup, group.getId());
+            syncDataWithDb();
         }
+    }
+
+    private void syncDataWithDb() {
+        contactToRemoveFromGroup = app.db().contacts().getById(contactToRemoveFromGroup.getId());
+        group = app.db().groups().getById(group.getId());
     }
 
     @Test
@@ -61,8 +68,9 @@ public class ContactDeletionFromGroupTests extends TestBase {
         Groups groupsBefore =  app.db().contacts().getById(contactToRemoveFromGroup.getId()).getGroups();
         Contacts contactsBefore = app.db().groups().getById(group.getId()).getContacts();
         app.contact().deleteFromGroup(contactToRemoveFromGroup, group.getId());
-        Groups groupsAfter =  app.db().contacts().getById(contactToRemoveFromGroup.getId()).getGroups();
-        Contacts contactsAfter = app.db().groups().getById(group.getId()).getContacts();
+        syncDataWithDb();
+        Groups groupsAfter =  contactToRemoveFromGroup.getGroups();
+        Contacts contactsAfter = group.getContacts();
 
         assertThat(groupsAfter.size(), equalTo(groupsBefore.size() - 1));
         assertThat(contactsAfter.size(), equalTo(contactsBefore.size() - 1));
