@@ -16,8 +16,6 @@ public class HelperBase {
         this.wd = app.getDriver();
     }
 
-
-
     protected void type(By locator, String text) {
         if (text != null) {
             String existingText = wd.findElement(locator).getAttribute("value");
@@ -77,5 +75,12 @@ public class HelperBase {
 
     protected WebDriver getWd() {
         return wd;
+    }
+
+    public void login(String username, String password) {
+        app.goTo().loginPage();
+        type(By.name("username"), username);
+        type(By.name("password"), password);
+        click(By.cssSelector("input[value='Войти']"));
     }
 }

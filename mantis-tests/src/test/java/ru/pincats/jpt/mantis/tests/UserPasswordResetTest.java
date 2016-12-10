@@ -26,7 +26,7 @@ public class UserPasswordResetTest extends TestBase {
 
     @Test
     public void testUserPasswordReset() throws IOException, MessagingException {
-        app.admin().login();
+        app.admin().login(app.properties().getProperty("web.adminLogin"), app.properties().getProperty("web.adminPassword"));
         app.goTo().usersManagement();
         MantisUser user = app.db().users().iterator().next();
         app.admin().passwordResetFor(user);
@@ -38,12 +38,6 @@ public class UserPasswordResetTest extends TestBase {
         String newPassword = "password" + System.currentTimeMillis();
         app.user().finishReset(confirmationLink, newPassword);
         assertTrue(app.newSession().login(user.getUsername(), newPassword));
-    }
-
-    private String findConfirmationLink(List<MailMessage> mailMessages, String email) {
-        MailMessage mailMessage = mailMessages.stream().filter((m) -> m.to.equals(email)).findFirst().get();
-        VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
-        return regex.getText(mailMessage.text);
     }
 
     @AfterMethod(alwaysRun = true)

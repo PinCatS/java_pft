@@ -11,13 +11,6 @@ public class UserHelper extends HelperBase {
         super(app);
     }
 
-    public void login(String username, String password) {
-        app.goTo().loginPage();
-        type(By.name("username"), username);
-        type(By.name("password"), password);
-        click(By.cssSelector("input[value='Войти']"));
-    }
-
     public void finishReset(String confirmationLink, String newPassword) {
         wd.get(confirmationLink);
         type(By.name("password"), newPassword);
