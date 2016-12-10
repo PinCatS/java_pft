@@ -24,6 +24,7 @@ public class ApplicationManager {
     private RegistrationHelper registrationHelper;
     private FtpHelper ftpHelper;
     private MailHelper mailHelper;
+    private DbHelper dbHelper;
 
     public void setProperties(Properties properties) {
         this.properties = properties;
@@ -75,6 +76,14 @@ public class ApplicationManager {
         }
         
         return mailHelper;
+    }
+
+    public DbHelper db() {
+        if (dbHelper == null) {
+            dbHelper = new DbHelper(properties.getProperty("db.hibernateConfigXML"));
+        }
+
+        return dbHelper;
     }
 
     public WebDriver getDriver() {
