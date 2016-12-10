@@ -54,4 +54,8 @@ public class ApplicationManager {
     public Properties properties() {
         return properties;
     }
+
+    public HttpSession newSession() {
+        return new HttpSession(this);
+    }
 }
