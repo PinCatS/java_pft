@@ -23,6 +23,7 @@ public class ApplicationManager {
     private Properties properties;
     private RegistrationHelper registrationHelper;
     private FtpHelper ftpHelper;
+    private MailHelper mailHelper;
 
     public void setProperties(Properties properties) {
         this.properties = properties;
@@ -66,6 +67,14 @@ public class ApplicationManager {
         }
 
         return ftpHelper;
+    }
+    
+    public MailHelper mail() {
+        if (mailHelper == null) {
+            mailHelper = new MailHelper(this);
+        }
+        
+        return mailHelper;
     }
 
     public WebDriver getDriver() {
