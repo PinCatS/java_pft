@@ -6,8 +6,8 @@ import org.openqa.selenium.WebDriver;
  * Created by PinCatS on 10.12.2016.
  */
 public class RegistrationHelper {
-    ApplicationManager app;
-    WebDriver wd;
+    private final ApplicationManager app;
+    private final WebDriver wd;
 
     RegistrationHelper(ApplicationManager app){
         this.app = app;

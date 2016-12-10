@@ -22,6 +22,7 @@ public class ApplicationManager {
     private String browser;
     private Properties properties;
     private RegistrationHelper registrationHelper;
+    private FtpHelper ftpHelper;
 
     public void setProperties(Properties properties) {
         this.properties = properties;
@@ -57,6 +58,14 @@ public class ApplicationManager {
         }
 
         return registrationHelper;
+    }
+
+    public FtpHelper ftp() {
+        if (ftpHelper == null) {
+            ftpHelper = new FtpHelper(this);
+        }
+
+        return ftpHelper;
     }
 
     public WebDriver getDriver() {
