@@ -7,6 +7,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import ru.pincats.jpt.mantis.model.MantisUser;
 
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -23,12 +24,12 @@ public class DbHelper {
         sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
     }
 
-    public List<MantisUser> users() {
+    public HashSet<MantisUser> users() {
         final Session session = sessionFactory.openSession();
         session.beginTransaction();
         List<MantisUser> result = session.createQuery( "from MantisUser where username <> 'administrator'" ).list();
         session.getTransaction().commit();
         session.close();
-        return result;
+        return new HashSet<MantisUser>(result);
     }
 }

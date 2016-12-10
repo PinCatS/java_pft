@@ -25,6 +25,9 @@ public class ApplicationManager {
     private FtpHelper ftpHelper;
     private MailHelper mailHelper;
     private DbHelper dbHelper;
+    private NavigationHelper navigationHelper;
+    private AdminHelper adminHelper;
+    private UserHelper userHelper;
 
     public void setProperties(Properties properties) {
         this.properties = properties;
@@ -84,6 +87,30 @@ public class ApplicationManager {
         }
 
         return dbHelper;
+    }
+
+    public NavigationHelper goTo() {
+        if (navigationHelper == null) {
+            navigationHelper = new NavigationHelper(this);
+        }
+
+        return navigationHelper;
+    }
+
+    public AdminHelper admin() {
+        if (adminHelper == null) {
+            adminHelper = new AdminHelper(this);
+        }
+
+        return adminHelper;
+    }
+
+    public UserHelper user() {
+        if (userHelper == null) {
+            userHelper = new UserHelper(this);
+        }
+
+        return userHelper;
     }
 
     public WebDriver getDriver() {
